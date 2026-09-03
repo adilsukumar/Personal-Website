@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Set only once CustomCursor confirms a fine pointer + no reduced-motion
+   preference, so the real cursor never disappears without a replacement.
+   Targets <html>, not <body> — the scrollbar is painted as part of the
+   document's root scrolling element, and only a rule scoped there (not to
+   body) is honored while hovering it. */
+html.custom-cursor-active,
+html.custom-cursor-active * {
+  cursor: none !important;
+}
+
+/* Themed scrollbar — dark track, cyan thumb matching the site's primary
+   accent color, instead of the browser's default light scrollbar clashing
+   against an all-black page. Deliberately a solid color, not a gradient:
+   tried a cyan-to-purple linear-gradient() on ::-webkit-scrollbar-thumb
+   first, but Chromium silently flattens gradients there to just the first
+   color stop (verified by sampling pixels down an oversized test thumb —
+   solid cyan top to bottom, no transition) rather than actually painting
+   one, so a gradient here is a real engine limitation, not a syntax fix. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #67e8f9 rgba(255, 255, 255, 0.04);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #67e8f9;
+  background-clip: padding-box;
+  border: 2px solid #000000;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #22d3ee;
+}
+
+/* A soft glow that tracks the pointer across a card — set --spot-x/--spot-y
+   via onMouseMove (see src/lib/spotlight.ts) and this handles the rest.
+   Pure CSS + one event handler per card, no continuous animation while
+   idle, so it costs nothing on cards nobody's hovering. */
+.spotlight-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    480px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(103, 232, 249, 0.14),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Slow-drifting ambient glow blobs (see src/components/AmbientGlow.tsx) —
+   transform-only, so the GPU composites the pre-blurred layer once and just
+   moves it; no per-frame re-blur cost even at a large blur radius. */
+@keyframes ambient-drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(40px, 30px);
+  }
+}
+
+@keyframes ambient-drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-35px, -25px);
+  }
+}
+
+.animate-ambient-drift-a {
+  animation: ambient-drift-a 20s ease-in-out infinite;
+}
+
+.animate-ambient-drift-b {
+  animation: ambient-drift-b 24s ease-in-out infinite;
+}
+
+/* Adaptive visual tier. The low-power detector adds this class for machines
+   with constrained CPU/memory, slow display updates, data-saving enabled, or
+   a measured inability to sustain smooth frames. Layout, color, borders, and
+   every section's composition remain intact; only costly continuous filters
+   and transparent-surface recomposition are simplified. */
+html.low-power-effects [class*="backdrop-blur"] {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html.low-power-effects .performance-glow {
+  animation: none !important;
+  filter: blur(44px) !important;
+  opacity: 0.55 !important;
+  transform: none !important;
+}
+
+html.low-power-effects .animate-ambient-drift-a,
+html.low-power-effects .animate-ambient-drift-b,
+html.low-power-effects .animate-node-pulse,
+html.low-power-effects .animate-pulse {
+  animation: none !important;
+}
+
+/* Continuous "alive" pulse for timeline nodes once they've entered view (see
+   Experience.tsx) — runs indefinitely but costs nothing on cards nobody's
+   looking at since box-shadow-only animations on a 14px dot are effectively
+   free even when several are running at once. */
+@keyframes node-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 10px 2px rgba(34, 211, 238, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 18px 6px rgba(34, 211, 238, 0.85);
+  }
+}
+
+.animate-node-pulse {
+  animation: node-pulse 2.4s ease-in-out infinite;
+}
