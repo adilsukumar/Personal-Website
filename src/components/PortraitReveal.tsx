@@ -268,7 +268,7 @@ export default function PortraitReveal() {
       className="relative border-t border-white/5 bg-black"
       style={{ height: `${WRAPPER_VH}vh` }}
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
         {/* Full-bleed portrait background — translucent but still clearly
             visible, plus a light darkening wash so text stays legible. The
             first pass at this (opacity-35 canvas stacked under an 85%-black
@@ -296,7 +296,7 @@ export default function PortraitReveal() {
 
         {/* Foreground content, top-anchored rather than vertically centered.
             The previous version used flex `items-center`, which centers
-            within the full h-screen box — whenever this column's natural
+            within the full h-[100dvh] box — whenever this column's natural
             content height ran close to the viewport height, that centering
             math pushed the heading's top edge above the fold, and the
             section's own overflow-hidden clipped it there. Anchoring from
@@ -310,32 +310,39 @@ export default function PortraitReveal() {
             than helpful. If content ever runs taller than the viewport on
             a short screen, letting it be is better than a double
             scrollbar. */}
-        <div className="relative z-10 h-full w-full px-6 pt-28 pb-12 md:px-24">
+        <div className="responsive-stage-copy relative z-10 h-full w-full px-5 pt-24 pb-8 sm:px-8 sm:pt-28 md:px-12 lg:px-24">
           <div className="mx-auto w-full max-w-2xl text-white">
             <motion.h2
               style={{ opacity: bioOpacity, y: bioY }}
-              className="mb-6 text-4xl font-bold tracking-tight md:text-6xl"
+              className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl lg:mb-6 lg:text-6xl"
             >
               Building the <span className="text-cyan-300">hardware</span> &{" "}
               <span className="text-purple-300">AI</span> of tomorrow.
             </motion.h2>
             <motion.div
               style={{ opacity: bioOpacity }}
-              className="mb-8 h-1 w-20 rounded-full bg-gradient-to-r from-cyan-300 to-purple-300"
+              className="mb-5 h-1 w-16 rounded-full bg-gradient-to-r from-cyan-300 to-purple-300 sm:mb-8 sm:w-20"
             />
-            <motion.p
+            <motion.div
               style={{ opacity: bioOpacity, y: bioY }}
-              className="mb-6 text-lg leading-relaxed font-light text-gray-300 sm:text-xl"
+              className="mb-4 text-sm leading-relaxed font-light text-gray-300 sm:mb-6 sm:text-lg lg:text-xl"
             >
-              I&apos;m a student at Vellore Institute of Technology, pursuing
-              a B.Tech in AI &amp; Bioinformatics. My focus is bridging the
-              physical and digital worlds — embedded systems,
-              microcontrollers, and biometric sensors that interface with
-              machine learning pipelines.
-            </motion.p>
+              <p>I&apos;m a student at Vellore Institute of Technology, pursuing</p>
+              <p className="mt-2 font-semibold text-white">
+                Integrated M.Tech. in Artificial Intelligence &amp; Bioinformatics
+              </p>
+              <p className="mt-1 text-xs text-cyan-200/85 sm:text-sm">
+                B.Tech+M.Tech in Artificial Intelligence &amp; Bioinformatics
+              </p>
+              <p className="mt-4">
+                My focus is bridging the physical and digital worlds — embedded
+                systems, microcontrollers, and biometric sensors that interface
+                with machine learning pipelines.
+              </p>
+            </motion.div>
             <motion.p
               style={{ opacity: bioOpacity, y: bioY }}
-              className="mb-10 text-base leading-relaxed font-light text-gray-400 sm:text-lg"
+              className="mb-6 text-sm leading-relaxed font-light text-gray-400 sm:mb-10 sm:text-base lg:text-lg"
             >
               From founding Pawsitive Diagnostics to leading The NeuroByte
               Society, I build scalable, edge-computed hardware-software
@@ -343,13 +350,13 @@ export default function PortraitReveal() {
             </motion.p>
             <motion.div
               style={{ opacity: statsOpacity, y: statsY }}
-              className="mb-10 flex flex-wrap gap-4"
+              className="mb-6 flex flex-wrap gap-3 sm:mb-10 sm:gap-4"
             >
               <a
                 href="https://www.linkedin.com/in/adilsukumar"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium backdrop-blur-md transition-all hover:border-cyan-400/50 hover:bg-white/10"
+                className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-xs font-medium backdrop-blur-md transition-all hover:border-cyan-400/50 hover:bg-white/10 sm:px-6 sm:py-3 sm:text-sm"
               >
                 LinkedIn
               </a>
@@ -357,7 +364,7 @@ export default function PortraitReveal() {
                 href="https://www.github.com/adilsukumar"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium backdrop-blur-md transition-all hover:border-purple-400/50 hover:bg-white/10"
+                className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-xs font-medium backdrop-blur-md transition-all hover:border-purple-400/50 hover:bg-white/10 sm:px-6 sm:py-3 sm:text-sm"
               >
                 GitHub
               </a>
@@ -365,7 +372,7 @@ export default function PortraitReveal() {
 
             <motion.div
               style={{ opacity: statsOpacity, y: statsY }}
-              className="grid grid-cols-2 gap-4 sm:max-w-md"
+              className="portrait-stats grid grid-cols-2 gap-3 sm:max-w-md sm:gap-4"
             >
               {[
                 { label: "Focus", value: "AI × Bioinformatics" },
@@ -375,12 +382,12 @@ export default function PortraitReveal() {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl"
+                  className="rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-xl sm:rounded-2xl sm:p-6"
                 >
                   <p className="mb-2 font-mono text-xs tracking-widest text-cyan-300/80 uppercase">
                     {item.label}
                   </p>
-                  <p className="text-lg font-semibold text-white">
+                  <p className="text-sm font-semibold text-white sm:text-lg">
                     {item.value}
                   </p>
                 </div>

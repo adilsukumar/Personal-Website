@@ -29,9 +29,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-black text-white">
+      <body className="flex flex-col bg-black text-white">
         <HeroRevealProvider>
           <CustomCursor />
           <AmbientSound />

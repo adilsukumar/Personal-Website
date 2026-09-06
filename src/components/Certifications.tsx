@@ -141,12 +141,10 @@ function DesktopArchive() {
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
   const sceneOpacity = useTransform(scrollYProgress, (value) => {
     if (reducedMotion) return 1;
-    if (value < 0.035) return value / 0.035;
     if (value > ARCHIVE_ACTIVE_END) return Math.max(0, (1 - value) / (1 - ARCHIVE_ACTIVE_END));
     return 1;
   });
   const sceneY = useTransform(scrollYProgress, (value) => {
-    if (value < 0.035) return 26 * (1 - value / 0.035);
     if (value > ARCHIVE_ACTIVE_END) return -34 * ((value - ARCHIVE_ACTIVE_END) / (1 - ARCHIVE_ACTIVE_END));
     return 0;
   });
@@ -173,8 +171,8 @@ function DesktopArchive() {
   };
 
   return (
-    <div ref={sectionRef} className="relative hidden h-[1400vh] md:block">
-      <motion.div style={{ opacity: sceneOpacity, y: sceneY }} className="sticky top-0 mx-auto flex h-screen min-h-[700px] max-w-[90rem] flex-col overflow-hidden px-10 py-16 lg:px-16 lg:py-20">
+    <div ref={sectionRef} className="cinematic-desktop relative h-[1400vh]">
+      <motion.div style={{ opacity: sceneOpacity, y: sceneY }} className="sticky top-0 mx-auto flex h-[100dvh] min-h-[700px] max-w-[90rem] flex-col overflow-hidden px-10 py-16 lg:px-16 lg:py-20 min-[2200px]:max-w-[150rem] min-[2200px]:px-24">
         <div className="flex shrink-0 items-start justify-between gap-8">
           <div className="max-w-xl">
             <SectionEyebrow number="02" label="Certifications" />
@@ -250,7 +248,7 @@ function DesktopArchive() {
 
 function MobileArchive() {
   return (
-    <div className="relative px-6 py-28 md:hidden">
+    <div className="cinematic-adaptive relative px-6 py-28">
       <SectionEyebrow number="02" label="Certifications" />
       <h2 className="text-3xl font-semibold tracking-tight text-white">Certifications &amp; achievements</h2>
       <p className="mt-3 text-sm text-slate-500">Proof, preserved in motion.</p>

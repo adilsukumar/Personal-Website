@@ -14,8 +14,7 @@ export default function Footer() {
         </a>
 
         <p className="text-center text-sm">
-          &copy; {year} Adil Sukumar. Built with Next.js, three.js, and
-          framer-motion.
+          &copy; {year} Adil Sukumar. All rights reserved.
         </p>
 
         <div className="flex items-center gap-4">

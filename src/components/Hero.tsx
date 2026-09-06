@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import {
   motion,
+  useInView,
   useMotionValueEvent,
   useScroll,
   useTransform,
@@ -25,6 +26,7 @@ export default function Hero() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { setRevealed } = useHeroReveal();
   const isLowPower = useIsLowPowerDevice();
+  const isNearViewport = useInView(wrapperRef, { margin: "100% 0px 100% 0px" });
 
   const { scrollYProgress } = useScroll({
     target: wrapperRef,
@@ -70,25 +72,27 @@ export default function Hero() {
       className="relative bg-black"
       style={{ height: `${WRAPPER_VH}vh` }}
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
         <div className="absolute inset-0">
-          <GlitterWrap
-            particleCount={isLowPower ? 84 : 420}
-            color1="#ffffff"
-            color2="#22d3ee"
-            color3="#a78bfa"
-            speed={4}
-            density={100}
-            starSize={16}
-            focalDepth={13}
-            turbulence={1}
-            brightness={100}
-            glitterIntensity={4}
-            trailAmount={92}
-            reverse={false}
-            maxFps={isLowPower ? 24 : 60}
-            pixelRatioCap={isLowPower ? 1 : 2}
-          />
+          {isNearViewport && (
+            <GlitterWrap
+              particleCount={isLowPower ? 84 : 420}
+              color1="#ffffff"
+              color2="#22d3ee"
+              color3="#a78bfa"
+              speed={4}
+              density={100}
+              starSize={16}
+              focalDepth={13}
+              turbulence={1}
+              brightness={100}
+              glitterIntensity={4}
+              trailAmount={92}
+              reverse={false}
+              maxFps={isLowPower ? 24 : 60}
+              pixelRatioCap={isLowPower ? 1 : 2}
+            />
+          )}
         </div>
 
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_35%,_rgba(0,0,0,0.75)_100%)]" />

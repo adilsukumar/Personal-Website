@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   motion,
+  useInView,
   useMotionValueEvent,
   useScroll,
   useTransform,
@@ -65,6 +66,7 @@ function useLivePopulation(updateInterval: number) {
 export default function PopulationJourney() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const isLowPower = useIsLowPowerDevice();
+  const isNearViewport = useInView(wrapperRef, { margin: "100% 0px 100% 0px" });
   const { storyPop, livePop } = useLivePopulation(isLowPower ? 1000 : 300);
   const groups = useMemo(() => splitIntoGroups(storyPop), [storyPop]);
 
@@ -135,10 +137,10 @@ export default function PopulationJourney() {
       className="relative bg-black"
       style={{ height: `${STAGE_COUNT * STAGE_VH}vh` }}
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
         {/* Globe — unmounted (not just faded) once the vortex takes over; see
             the note above showVortex for why the two never coexist. */}
-        {!showVortex && (
+        {isNearViewport && !showVortex && (
           <motion.div className="absolute inset-0 z-0" style={{ opacity: globeOpacity }}>
             <Globe
               speed={1.6}
@@ -164,7 +166,7 @@ export default function PopulationJourney() {
         )}
 
         {/* Tornado transition, gathering as the story approaches "one person" */}
-        {showVortex && (
+        {isNearViewport && showVortex && (
           <motion.div
             className="pointer-events-none absolute inset-0 z-10 mix-blend-screen"
             style={{ opacity: vortexOpacity }}

@@ -36,8 +36,8 @@ function startDetection() {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const slowUpdate = window.matchMedia("(update: slow)").matches;
   const hardwareLimited =
-    cores <= 6 ||
-    (memory !== undefined && memory <= 6) ||
+    cores <= 2 ||
+    (memory !== undefined && memory <= 2) ||
     Boolean(nav.connection?.saveData) ||
     reducedMotion ||
     slowUpdate;
@@ -62,7 +62,7 @@ function startDetection() {
 
     const delta = now - previousFrame;
     previousFrame = now;
-    if (delta > 28) delayedFrames += 1;
+    if (delta > 35) delayedFrames += 1;
     frames += 1;
 
     if (frames < 42) {
@@ -71,7 +71,7 @@ function startDetection() {
     }
 
     const averageFrameTime = (now - startedAt) / frames;
-    publish(averageFrameTime > 22 || delayedFrames >= 10);
+    publish(averageFrameTime > 28 || delayedFrames >= 16);
   };
 
   window.requestAnimationFrame(sample);

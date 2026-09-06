@@ -224,8 +224,8 @@ function DesktopSignal() {
   const activeRole = SIGNAL_ROLES[activeIndex];
 
   return (
-    <div ref={sectionRef} className="relative hidden md:block" style={{ height: `${SIGNAL_ROLES.length * 200}vh` }}>
-      <motion.div style={{ opacity: handoffOpacity, y: handoffY }} className="sticky top-0 flex h-screen min-h-[700px] flex-col justify-center overflow-hidden py-16 lg:py-20">
+    <div ref={sectionRef} className="cinematic-desktop relative" style={{ height: `${SIGNAL_ROLES.length * 200}vh` }}>
+      <motion.div style={{ opacity: handoffOpacity, y: handoffY }} className="sticky top-0 flex h-[100dvh] min-h-[700px] flex-col justify-center overflow-hidden py-16 lg:py-20">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
           <div className="performance-glow absolute top-[22%] left-[12%] h-64 w-64 rounded-full bg-cyan-400/[0.06] blur-[90px]" />
           <div className="performance-glow absolute right-[8%] bottom-[17%] h-72 w-72 rounded-full bg-violet-500/[0.08] blur-[105px]" />
@@ -443,7 +443,7 @@ function MobileSignal() {
   const activeRole = SIGNAL_ROLES[activeIndex];
 
   return (
-    <div className="py-24 md:hidden">
+    <div className="cinematic-adaptive py-24">
       <p className="mb-3 font-mono text-[9px] tracking-[0.36em] text-cyan-200/65 uppercase">Beyond the orbit</p>
       <h3 className="text-3xl font-semibold tracking-tight text-white">Leadership &amp; activities</h3>
       <p className="mt-3 text-sm text-slate-500">Every role leaves a signal.</p>

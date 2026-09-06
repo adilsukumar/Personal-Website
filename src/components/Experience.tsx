@@ -326,8 +326,8 @@ export default function Experience() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.14)_55%,rgba(0,0,0,0.72)_100%)]" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 pt-24 md:px-12 lg:px-16">
-        <div className="md:hidden">
+      <div className="mx-auto max-w-7xl px-6 pt-24 md:px-12 lg:px-16 min-[2200px]:max-w-[150rem] min-[2200px]:px-24">
+        <div className="cinematic-adaptive pb-24">
           <SectionEyebrow number="01" label="Experience" />
           <h2 className="mb-4 text-4xl font-bold tracking-tight">
             Professional <span className="text-cyan-300">journey</span>
@@ -350,9 +350,13 @@ export default function Experience() {
             {JOURNEY.map((milestone) => {
               const Icon = milestone.icon;
               return (
-                <article
+                <motion.article
                   key={milestone.role}
-                  className="min-w-[84vw] snap-center rounded-[1.5rem] border border-white/10 bg-[#061117]/85 p-6 backdrop-blur-xl"
+                  initial={{ opacity: 0, y: 22, scale: 0.97 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.45 }}
+                  transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+                  className="min-w-[84vw] snap-center rounded-[1.5rem] border border-white/10 bg-[#061117]/85 p-6 backdrop-blur-xl sm:min-w-[28rem]"
                 >
                   <div className="mb-6 flex items-center justify-between">
                     <span className="flex h-12 w-12 items-center justify-center rounded-full border border-cyan-300/40 bg-cyan-300/5 text-cyan-300">
@@ -364,14 +368,14 @@ export default function Experience() {
                   <p className="mt-2 text-sm text-violet-300">{milestone.company}</p>
                   <p className="mt-4 text-sm leading-6 text-slate-400">{milestone.desc}</p>
                   <p className="mt-6 font-mono text-[10px] tracking-[0.16em] text-slate-500 uppercase">{milestone.date}</p>
-                </article>
+                </motion.article>
               );
             })}
           </div>
         </div>
 
-        <div ref={journeyRef} className="relative hidden h-[1000vh] md:block">
-          <div className="sticky top-0 flex h-screen min-h-[700px] flex-col justify-center pt-20 pb-8">
+        <div ref={journeyRef} className="cinematic-desktop relative h-[1000vh]">
+          <div className="sticky top-0 flex h-[100dvh] min-h-[700px] flex-col justify-center pt-20 pb-8">
             <div className="shrink-0">
               <SectionEyebrow number="01" label="Experience" />
               <div className="flex items-end justify-between gap-8">

@@ -298,8 +298,8 @@ function DesktopProjects() {
   const point = ORBIT_POINTS[activeIndex];
 
   return (
-    <div ref={sectionRef} className="relative hidden md:block" style={{ height: `${PROJECTS.length * 200}vh` }}>
-      <motion.div style={{ opacity: sceneOpacity, y: sceneY }} className="sticky top-0 mx-auto flex h-screen min-h-[700px] max-w-[90rem] flex-col overflow-hidden px-10 py-14 lg:px-16 lg:py-16">
+    <div ref={sectionRef} className="cinematic-desktop relative" style={{ height: `${PROJECTS.length * 200}vh` }}>
+      <motion.div style={{ opacity: sceneOpacity, y: sceneY }} className="sticky top-0 mx-auto flex h-[100dvh] min-h-[700px] max-w-[90rem] flex-col overflow-hidden px-10 py-14 lg:px-16 lg:py-16 min-[2200px]:max-w-[150rem] min-[2200px]:px-24">
         <div className="flex shrink-0 items-end justify-between gap-10">
           <div>
             <SectionEyebrow number="03" label="Projects" />
@@ -362,7 +362,7 @@ function DesktopProjects() {
 
 function MobileProjects() {
   return (
-    <div className="relative px-6 py-28 md:hidden">
+    <div className="cinematic-adaptive relative px-6 py-28">
       <SectionEyebrow number="03" label="Projects" />
       <div className="flex items-center gap-3">
         <Layers className="h-7 w-7 text-violet-300" strokeWidth={1.5} />

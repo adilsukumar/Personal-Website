@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import PopulationJourney from "@/components/PopulationJourney";
 import PortraitReveal from "@/components/PortraitReveal";
 import Projects from "@/components/Projects";
+import SectionDivider from "@/components/SectionDivider";
 
 export default function Home() {
   return (
@@ -32,8 +33,11 @@ export default function Home() {
       <div className="relative">
         <AmbientStarfield />
         <Experience />
+        <SectionDivider from="experience" to="certifications" />
         <Certifications />
+        <SectionDivider from="certifications" to="projects" />
         <Projects />
+        <SectionDivider from="projects" to="contact" />
         <Contact />
       </div>
       <Footer />
