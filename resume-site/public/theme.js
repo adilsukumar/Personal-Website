@@ -34,11 +34,11 @@
   const expand = document.getElementById('expand-preview');
   if (expand && dialog && typeof dialog.showModal === 'function') expand.hidden = false;
   expand?.addEventListener('click', () => {
-    document.getElementById('dialog-image').src = image.src;
-    const title = document.getElementById('preview-title').textContent;
+    document.getElementById('dialog-image').src = selected.dataset.preview;
+    const title = selected.dataset.title;
     document.getElementById('dialog-image').alt = `${title} resume, enlarged first-page preview`;
     document.getElementById('dialog-title').textContent = `${title} resume`;
-    document.getElementById('dialog-open').href = document.getElementById('preview-open').href;
+    document.getElementById('dialog-open').href = selected.href;
     dialog.showModal();
   });
   document.getElementById('dialog-close')?.addEventListener('click', () => dialog.close());
