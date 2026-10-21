@@ -1,0 +1,6 @@
+.vercel/
+__pycache__/
+qa/
+*-state.json
+*-checks.json
+deployment-result.json

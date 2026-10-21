@@ -1,0 +1,44 @@
+[
+  {
+    "category": "general",
+    "title": "General",
+    "url": "/resumes/adil-sukumar-general-intmtech.pdf",
+    "pages": 1,
+    "sha256": "7c106e8b982842735b3b3a03b3bf83a62d5da7ede2cca0dfda3de04e7aa6e4c1"
+  },
+  {
+    "category": "tech",
+    "title": "Technology",
+    "url": "/resumes/adil-sukumar-tech-intmtech.pdf",
+    "pages": 1,
+    "sha256": "d34839cc52b6549ad7068f6ce7abaa7f2d5536cfab42e445492192e26863ecfa"
+  },
+  {
+    "category": "banking",
+    "title": "Banking & Fintech",
+    "url": "/resumes/adil-sukumar-banking-intmtech.pdf",
+    "pages": 1,
+    "sha256": "ab11713ea2cff713d25f922cf0200a7afaf191609854c6f8d8c390571d924a40"
+  },
+  {
+    "category": "bio",
+    "title": "Bioinformatics",
+    "url": "/resumes/adil-sukumar-bio-intmtech.pdf",
+    "pages": 1,
+    "sha256": "8a0b136b7fb6970f55b1562be28a6d4da89f54f80b665df605b0cd5c8efa332e"
+  },
+  {
+    "category": "research",
+    "title": "Research",
+    "url": "/resumes/adil-sukumar-research-intmtech.pdf",
+    "pages": 1,
+    "sha256": "56fdca0a2fd09f03ff19398001018189e32ac88d96125987eefdefe81b368df6"
+  },
+  {
+    "category": "full",
+    "title": "Full CV",
+    "url": "/resumes/adil-sukumar-full-intmtech.pdf",
+    "pages": 6,
+    "sha256": "5b95e156b09b3a3eb425cf97ea40f6c71ede3bba10b5398cb02f999810e36c48"
+  }
+]
