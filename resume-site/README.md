@@ -6,7 +6,7 @@ This folder contains the complete static source for the Resume Observatory, alon
 
 ## Six perspectives, one builder
 
-Six direct PDF tiles sit beside a floating document stack. Hovering or keyboard-focusing a tile switches the actual first-page preview, title, accent and open-PDF links. Orbital rings and a pointer-responsive paper tilt carry the portfolio’s spatial visual language into the resume collection. Compact screens retain all six direct PDF tiles without the decorative preview stage.
+Six direct PDF tiles sit beside a floating document stack. Hovering or keyboard-focusing a tile switches the actual first-page preview, title, accent and open-PDF links. The larger, more front-facing paper improves legibility; an Expand control opens a scrollable first-page reading dialog with a link to the full PDF. A transparent AI-generated standing portrait of Adil faces the document without covering it. Orbital rings and a pointer-responsive paper tilt carry the portfolio’s spatial visual language into the resume collection. Compact screens retain all six direct PDF tiles without the decorative preview stage.
 
 ## Theme shared with the portfolio
 
@@ -20,6 +20,7 @@ Six direct PDF tiles sit beside a floating document stack. Hovering or keyboard-
 - `template.html`: page structure. Card descriptions and metadata are in `build.py`; run it to regenerate `public/index.html`.
 - `public/style.css`: layout and shared visual theme.
 - `public/theme.js`: keyboard/hover preview switching, card spotlights and pointer-responsive paper tilt.
+- `public/images/adil-standing.webp`: optimized transparent portrait; see [`ARTWORK.md`](ARTWORK.md) for provenance and the generation prompt.
 - `public/previews/`: generated first-page WebP images; the PDFs remain the original approved files.
 - `public/resumes/`: six public PDFs, using stable filenames.
 - `vercel.json`: static hosting and PDF headers.

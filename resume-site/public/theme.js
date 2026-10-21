@@ -30,6 +30,23 @@
       anchor.setAttribute('aria-label', `Open ${link.dataset.title} resume PDF`);
     });
   };
+  const dialog = document.getElementById('preview-dialog');
+  const expand = document.getElementById('expand-preview');
+  if (expand && dialog && typeof dialog.showModal === 'function') expand.hidden = false;
+  expand?.addEventListener('click', () => {
+    document.getElementById('dialog-image').src = image.src;
+    const title = document.getElementById('preview-title').textContent;
+    document.getElementById('dialog-image').alt = `${title} resume, enlarged first-page preview`;
+    document.getElementById('dialog-title').textContent = `${title} resume`;
+    document.getElementById('dialog-open').href = document.getElementById('preview-open').href;
+    dialog.showModal();
+  });
+  document.getElementById('dialog-close')?.addEventListener('click', () => dialog.close());
+  dialog?.addEventListener('click', (event) => {
+    if (event.target !== dialog) return;
+    const bounds = dialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+  });
   links.forEach((link) => {
     link.addEventListener('pointerenter', () => show(link));
     link.addEventListener('focus', () => show(link));
