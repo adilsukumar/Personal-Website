@@ -5,6 +5,8 @@ import json
 import os
 import shutil
 from pypdf import PdfReader
+from html import escape
+import pypdfium2 as pdfium
 
 ROOT = Path(__file__).resolve().parent
 SOURCE = Path(os.environ.get('RESUME_SOURCE', r'D:\1_VIT\Resumes\Adil_Sukumar\2026'))
@@ -30,8 +32,11 @@ DOWNLOAD = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5
 def build():
     public = ROOT / 'public'
     (public / 'resumes').mkdir(parents=True, exist_ok=True)
+    (public / 'previews').mkdir(parents=True, exist_ok=True)
+    accents = ['#67e8f9', '#60a5fa', '#6ee7b7', '#a78bfa', '#f0abfc', '#c4b5fd']
+    details = ['A broad view of my work', 'Software, AI and embedded systems', 'Financial technology and data', 'Computational biology and lab work', 'Experiments, methods and analysis', 'The complete experience and project record']
     cards, manifest = [], []
-    for slug, title, folder, label, description, tags, icon in RESUMES:
+    for index, (slug, title, folder, label, description, tags, icon) in enumerate(RESUMES):
         src = SOURCE / folder / f'Adil_Sukumar_2026_{label}_intmtech.pdf'
         reader = PdfReader(src)
         text = '\n'.join(p.extract_text() or '' for p in reader.pages)
@@ -39,35 +44,36 @@ def build():
         count = len(reader.pages)
         assert count == (6 if slug == 'full' else 1)
         dest = public / 'resumes' / f'adil-sukumar-{slug}-intmtech.pdf'
+        digest = hashlib.sha256(src.read_bytes()).hexdigest()
+        changed = not dest.exists() or hashlib.sha256(dest.read_bytes()).hexdigest() != digest
         shutil.copy2(src, dest)
+        thumbnail = public / 'previews' / f'{slug}.webp'
+        if changed or not thumbnail.exists():
+            document = pdfium.PdfDocument(str(src))
+            page = document[0]
+            bitmap = page.render(scale=1.52)
+            picture = bitmap.to_pil().convert('RGB')
+            picture.save(thumbnail, 'WEBP', quality=84, method=6)
+            picture.close()
+            bitmap.close()
+            page.close()
+            document.close()
         url = '/resumes/' + dest.name
-        manifest.append({'category': slug, 'title': title, 'url': url, 'pages': count, 'sha256': hashlib.sha256(src.read_bytes()).hexdigest()})
-        cards.append(f'''<article class="card card-{slug}">
-          <a class="card-main" href="{url}" aria-label="View {title} resume, {count} {'pages' if count > 1 else 'page'} PDF">
-            <div class="card-top"><span class="icon"><svg viewBox="0 0 32 32" aria-hidden="true">{ICONS[icon]}</svg></span><span class="format">PDF <span aria-hidden="true">/</span> {count} {'pages' if count > 1 else 'page'}</span></div>
-            <h2>{title}</h2><p>{description}</p><span class="tags">{tags}</span>
-            <span class="view">View resume {ARROW}</span>
-          </a>
-          <a class="download" href="{url}" download aria-label="Download {title} resume">{DOWNLOAD}</a>
+        preview = f'/previews/{slug}.webp'
+        manifest.append({'category': slug, 'title': title, 'url': url, 'preview': preview, 'pages': count, 'sha256': digest})
+        active = ' is-active' if index == 0 else ''
+        page_label = f"{count} {'pages' if count > 1 else 'page'}"
+        cards.append(f'''<article class="tile{active}" style="--accent:{accents[index]}">
+          <a class="tile-link" href="{url}" data-title="{escape(title, quote=True)}" data-preview="{preview}" data-pages="{page_label}" data-detail="{escape(details[index], quote=True)}" data-accent="{accents[index]}" aria-label="Open {escape(title, quote=True)} resume, {page_label} PDF">
+            <div class="tile-top"><span class="tile-icon"><svg viewBox="0 0 32 32" aria-hidden="true">{ICONS[icon]}</svg></span><span class="page-count">{page_label} <span aria-hidden="true">/</span> PDF</span></div>
+            <h2>{escape(title)}</h2><p>{escape(description)}</p>
+            <span class="tile-bottom"><span>View resume</span>{ARROW}</span>
+          </a><a class="download" href="{url}" download aria-label="Download {escape(title, quote=True)} resume">{DOWNLOAD}</a>
         </article>''')
-    html = '''<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Resumes | Adil Sukumar</title><meta name="description" content="Explore Adil Sukumar’s resumes for technology, fintech, bioinformatics and research, or view the complete CV.">
-<meta name="theme-color" content="#000000"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="https://www.resume.adilsukumar.xyz/">
-<meta property="og:title" content="Resumes | Adil Sukumar"><meta property="og:description" content="Technology, fintech, bioinformatics, research and the complete CV."><meta property="og:type" content="website">
-<link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css"><script src="/theme.js" defer></script></head><body>
-<a class="skip" href="#resumes">Skip to resumes</a>
-<div class="atmosphere" aria-hidden="true"><div class="glow glow-cyan"></div><div class="glow glow-violet"></div><div class="stars"></div></div>
-<header><a class="identity" href="https://www.adilsukumar.xyz">ADIL SUKUMAR</a><nav aria-label="Main navigation"><a href="https://www.adilsukumar.xyz">Portfolio</a><a href="#resumes" aria-current="page">Resumes</a></nav><a class="contact" href="mailto:adilsukumar24@gmail.com">Contact</a></header>
-<div class="shell"><main><section class="intro" aria-labelledby="page-title"><div class="eyebrow"><span></span> THE RESUME COLLECTION</div><h1 id="page-title">My <span>resumes.</span></h1><p>Hardware. Software. AI. Biology.<br>Choose the focus that fits your opportunity.</p><div class="degree"><span class="degree-dot" aria-hidden="true"></span><span>Integrated M.Tech. <span aria-hidden="true">·</span> AI &amp; Bioinformatics</span></div></section>
-<section id="resumes" class="grid" aria-label="Choose a resume">''' + '\n'.join(cards) + '''</section>
-</main><footer><span>© 2026 Adil Sukumar <span class="footer-dot">·</span> Chennai, India</span><div><a href="https://www.linkedin.com/in/adilsukumar/">LinkedIn</a><a href="https://github.com/adilsukumar">GitHub</a><a href="https://github.com/adilsukumar/Personal-Website/tree/main/resume-site">Page source</a></div></footer></div>
-</body></html>'''
-    (public / 'index.html').write_text(html, encoding='utf-8')
-    (ROOT / 'resume-manifest.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
-    print(f'Built six tiles and verified {len(manifest)} Integrated M.Tech. PDFs.')
+    template = (ROOT / 'template.html').read_text(encoding='utf-8')
+    (public / 'index.html').write_text(template.replace('{{CARDS}}', '\n'.join(cards)), encoding='utf-8', newline='\n')
+    (ROOT / 'resume-manifest.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8', newline='\n')
+    print(f'Built six perspectives, six document previews and {len(manifest)} verified Integrated M.Tech. PDFs.')
 
 if __name__ == '__main__':
     build()

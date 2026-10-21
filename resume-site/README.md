@@ -2,27 +2,32 @@
 
 Live: **https://www.resume.adilsukumar.xyz**. The shorter `resume.adilsukumar.xyz` redirects here.
 
-This folder contains the complete static source for the six-tile resume site, alongside the personal portfolio in the same repository. It is deployed as a separate Vercel project. Only Integrated M.Tech. PDFs are included: General, Technology, Banking & Fintech, Bioinformatics, Research and Full CV.
+This folder contains the complete static source for the Resume Observatory, alongside the personal portfolio in the same repository. It is deployed as a separate Vercel project. Only Integrated M.Tech. PDFs are included: General, Technology, Banking & Fintech, Bioinformatics, Research and Full CV.
+
+## Six perspectives, one builder
+
+Six direct PDF tiles sit beside a floating document stack. Hovering or keyboard-focusing a tile switches the actual first-page preview, title, accent and open-PDF links. Orbital rings and a pointer-responsive paper tilt carry the portfolio’s spatial visual language into the resume collection. Compact screens retain all six direct PDF tiles without the decorative preview stage.
 
 ## Theme shared with the portfolio
 
 - Geist and Geist Mono: the same self-hosted variable font files served by the portfolio; SIL Open Font Licenses are retained under `public/fonts/`.
 - Black background (`#000000`), cyan (`#67e8f9`) and violet (`#a78bfa`) accents.
 - Rounded glass navigation, subtle starfield and ambient glow, grid-textured cards, pointer spotlights, large arrow cursor and cyan scrollbar.
-- Single-column mobile tiles, visible keyboard focus and reduced-motion support. Every PDF remains accessible without JavaScript.
+- Responsive two-column tiles, one column on narrow screens, visible keyboard focus and reduced-motion/low-power support. Every PDF remains accessible without JavaScript.
 
 ## Edit
 
-- `public/index.html`: published page. Edit directly for a small content change, or update the template/card descriptions in `build.py` and regenerate it.
+- `template.html`: page structure. Card descriptions and metadata are in `build.py`; run it to regenerate `public/index.html`.
 - `public/style.css`: layout and shared visual theme.
-- `public/theme.js`: progressive card spotlight enhancement.
+- `public/theme.js`: keyboard/hover preview switching, card spotlights and pointer-responsive paper tilt.
+- `public/previews/`: generated first-page WebP images; the PDFs remain the original approved files.
 - `public/resumes/`: six public PDFs, using stable filenames.
 - `vercel.json`: static hosting and PDF headers.
 - `resume-manifest.json`: expected page counts and approved PDF hashes.
 
 ## Update the resumes
 
-Replace the corresponding PDFs in `public/resumes/`, keeping the filenames. Alternatively, install `requirements.txt` and run `python build.py` to refresh the six approved PDFs from the local resume directory. Its default source is `D:\1_VIT\Resumes\Adil_Sukumar\2026`; override it with the `RESUME_SOURCE` environment variable on another computer. The builder verifies the degree wording and page counts before copying PDFs.
+Replace the corresponding PDFs in `public/resumes/`, keeping the filenames. Alternatively, install `requirements.txt` and run `python build.py` to refresh the six approved PDFs from the local resume directory. Its default source is `D:\1_VIT\Resumes\Adil_Sukumar\2026`; override it with the `RESUME_SOURCE` environment variable on another computer. The builder verifies the degree wording and page counts before copying PDFs, and renders first-page previews when a PDF changes. If replacing a PDF manually, also regenerate its preview and manifest before publishing.
 
 ## Preview and deploy
 
