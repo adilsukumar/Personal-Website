@@ -10,6 +10,7 @@ const LINKS = [
   { href: "#experience", label: "Experience" },
   { href: "#certifications", label: "Certifications" },
   { href: "#projects", label: "Projects" },
+  { href: "https://www.resume.adilsukumar.xyz", label: "Resumes" },
   { href: "#contact", label: "Contact" },
 ];
 
