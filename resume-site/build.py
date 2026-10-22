@@ -61,14 +61,15 @@ def build():
         url = '/resumes/' + dest.name
         preview = f'/previews/{slug}.webp'
         manifest.append({'category': slug, 'title': title, 'url': url, 'preview': preview, 'pages': count, 'sha256': digest})
-        active = ' is-active' if index == 0 else ''
         page_label = f"{count} {'pages' if count > 1 else 'page'}"
-        cards.append(f'''<article class="tile{active}" style="--accent:{accents[index]}">
-          <a class="tile-link" href="{url}" data-title="{escape(title, quote=True)}" data-preview="{preview}" data-pages="{page_label}" data-detail="{escape(details[index], quote=True)}" data-accent="{accents[index]}" aria-label="Open {escape(title, quote=True)} resume, {page_label} PDF">
-            <div class="tile-top"><span class="tile-icon"><svg viewBox="0 0 32 32" aria-hidden="true">{ICONS[icon]}</svg></span><span class="page-count">{page_label} <span aria-hidden="true">/</span> PDF</span></div>
-            <h2>{escape(title)}</h2><p>{escape(description)}</p>
-            <span class="tile-bottom"><span>View resume</span>{ARROW}</span>
-          </a><a class="download" href="{url}" download aria-label="Download {escape(title, quote=True)} resume">{DOWNLOAD}</a>
+        cover_labels = ['Across disciplines', 'Build & ship', 'Markets & money', 'Code meets biology', 'Ask. Test. Discover.', 'The complete story']
+        cards.append(f'''<article class="cover cover-{slug}" style="--accent:{accents[index]}">
+          <a class="cover-link" href="{url}" data-title="{escape(title, quote=True)}" data-preview="{preview}" data-pages="{page_label}" data-detail="{escape(description, quote=True)}" data-accent="{accents[index]}" aria-label="Read {escape(title, quote=True)} resume">
+            <div class="cover-art" aria-hidden="true"><span class="art-ring ring-one"></span><span class="art-ring ring-two"></span><svg viewBox="0 0 32 32">{ICONS[icon]}</svg><span class="art-line"></span></div>
+            <span class="cover-kicker">{cover_labels[index]}</span>
+            <div class="cover-copy"><h2>{escape(title)}</h2><p>{escape(tags)}</p></div>
+            <span class="cover-footer"><span>{page_label} · PDF</span><span class="cover-open">Read resume {ARROW}</span></span>
+          </a>
         </article>''')
     template = (ROOT / 'template.html').read_text(encoding='utf-8')
     (public / 'index.html').write_text(template.replace('{{CARDS}}', '\n'.join(cards)), encoding='utf-8', newline='\n')
