@@ -18,7 +18,7 @@
     selected = link;
     const ticket = ++request;
     viewer.style.setProperty('--focus', link.dataset.accent);
-    links.forEach((item) => item.closest('.tile').classList.toggle('is-active', item === link));
+    links.forEach((item) => { item.closest('.tile').classList.toggle('is-active', item === link); item.setAttribute('aria-current', item === link ? 'true' : 'false'); });
     lenses.forEach((button) => {
       const active = button.dataset.lens === slug(link);
       button.classList.toggle('is-active', active);
@@ -28,7 +28,9 @@
     next.src = link.dataset.preview;
     try { await next.decode(); } catch { return; }
     if (ticket !== request) return;
+    document.getElementById('download-current').href = link.href;
     image.src = next.src;
+    stage.scrollTop = 0;
     image.alt = `First page of Adil Sukumar’s ${link.dataset.title} resume`;
     document.getElementById('preview-title').textContent = link.dataset.title;
     document.getElementById('preview-detail').textContent = `${link.dataset.pages} · ${link.dataset.detail}`;
@@ -63,6 +65,14 @@
       item.setAttribute('aria-pressed', String(active));
     });
   }));
+  const zoom = document.getElementById('zoom-preview');
+  zoom.addEventListener('click', () => {
+    const enlarged = viewer.classList.toggle('is-zoomed');
+    zoom.setAttribute('aria-pressed', String(enlarged));
+    zoom.setAttribute('aria-label', enlarged ? 'Fit resume to width' : 'Zoom in on resume');
+    zoom.innerHTML = enlarged ? '<span>Fit width </span>−' : '<span>Zoom in </span>+';
+  });
+  links[0].setAttribute('aria-current', 'true');
   const dialog = document.getElementById('preview-dialog');
   const expand = document.getElementById('expand-preview');
   const dialogImage = document.getElementById('dialog-image');
@@ -97,7 +107,8 @@
     });
   }
   links.forEach((link) => {
-    link.addEventListener('pointerenter', () => show(link));
+    link.setAttribute('aria-label', `Preview ${link.dataset.title} resume`);
+    link.addEventListener('click', (event) => { event.preventDefault(); show(link); });
     link.addEventListener('focus', () => show(link));
     if (finePointer && !reduced) {
       const tile = link.closest('.tile');

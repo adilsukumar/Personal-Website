@@ -43,6 +43,8 @@ In Vercel, use the **Personal-Website** repository, root directory **resume-site
 
 No credentials, Vercel login files, Word documents or B.Tech. resumes belong in this folder.
 
-## Viewport layout
+## Document desk layout
 
-The landing page fits the current viewport: all six options are visible without page scrolling. Desktop uses a compact header, three equal tile rows and a document preview sized from the remaining height. Compact screens show the six options and a Preview resumes control opening the same reader. Only the expanded reader scrolls. Layout rules are isolated in `public/viewport.css`.
+Six persistent category selectors sit beside a large, flat document canvas. Selecting a category updates the preview and its Open PDF and Download actions. The document scrolls independently while the landing page stays within the viewport. Zoom in enlarges the page for closer reading; Fit width restores the initial size. Desktop also offers an expanded reader. On mobile, the six selectors become a compact three-column strip above the canvas.
+
+The preview shows the first page; Open PDF provides every page and working links. Layout rules are in `public/viewport.css`. Rebuild generated HTML with `python build.py` after editing `template.html`.
