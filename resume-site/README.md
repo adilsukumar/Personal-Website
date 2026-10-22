@@ -42,3 +42,7 @@ Open http://127.0.0.1:8766. No Node dependencies or build step are required for 
 In Vercel, use the **Personal-Website** repository, root directory **resume-site**, Framework Preset **Other**, no build or install command, and output directory **public**. This deployment is separate from the Next.js portfolio at the repository root. For a manual deployment from this folder, run `npx vercel --prod` while signed into the project owner’s Vercel account.
 
 No credentials, Vercel login files, Word documents or B.Tech. resumes belong in this folder.
+
+## Viewport layout
+
+The landing page fits the current viewport: all six options are visible without page scrolling. Desktop uses a compact header, three equal tile rows and a document preview sized from the remaining height. Compact screens show the six options and a Preview resumes control opening the same reader. Only the expanded reader scrolls. Layout rules are isolated in `public/viewport.css`.

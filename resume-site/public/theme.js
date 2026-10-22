@@ -78,7 +78,10 @@
   if (expand && dialog && typeof dialog.showModal === 'function') {
     expand.hidden = false;
     document.querySelector('.reader-navigation').hidden = false;
-    expand.addEventListener('click', () => { updateReader(selected); dialog.showModal(); });
+    const openReader = () => { updateReader(selected); dialog.showModal(); };
+    expand.addEventListener('click', openReader);
+    const mobileReader = document.getElementById('mobile-reader');
+    if (mobileReader) { mobileReader.hidden = false; mobileReader.addEventListener('click', openReader); }
     document.getElementById('reader-previous').addEventListener('click', () => moveReader(-1));
     document.getElementById('reader-next').addEventListener('click', () => moveReader(1));
     document.getElementById('dialog-close').addEventListener('click', () => dialog.close());

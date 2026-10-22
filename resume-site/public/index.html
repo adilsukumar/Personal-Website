@@ -14,6 +14,7 @@
   <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/previews/general.webp" as="image">
   <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/viewport.css?v=2">
   <script src="/theme.js" defer></script>
 </head>
 <body>
@@ -31,7 +32,7 @@
     </section>
     <section id="resumes" class="observatory" aria-label="Explore six resumes">
       <div class="choices">
-        <div class="section-label"><span>CHOOSE YOUR PERSPECTIVE</span><span class="help">Hover to preview · Click to open</span></div>
+        <div class="section-label"><span>CHOOSE YOUR PERSPECTIVE</span><span class="help">Hover to preview · Click to open</span><button class="mobile-reader" id="mobile-reader" type="button" hidden>Preview resumes ↗</button></div>
         <div class="tiles"><article class="tile is-active" style="--accent:#67e8f9">
           <a class="tile-link" href="/resumes/adil-sukumar-general-intmtech.pdf" data-title="General" data-preview="/previews/general.webp" data-pages="1 page" data-detail="A broad view of my work" data-accent="#67e8f9" aria-label="Open General resume, 1 page PDF">
             <div class="tile-top"><span class="tile-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="8" width="24" height="19" rx="3"/><path d="M11 8V5h10v3M4 16c7 4 17 4 24 0M14 17h4v5h-4z"/></svg></span><span class="page-count">1 page <span aria-hidden="true">/</span> PDF</span></div>
