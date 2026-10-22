@@ -45,6 +45,6 @@ No credentials, Vercel login files, Word documents or B.Tech. resumes belong in 
 
 ## Document desk layout
 
-Six persistent category selectors sit beside a large, flat document canvas. Selecting a category updates the preview and its Open PDF and Download actions. The document scrolls independently while the landing page stays within the viewport. Zoom in enlarges the page for closer reading; Fit width restores the initial size. Desktop also offers an expanded reader. On mobile, the six selectors become a compact three-column strip above the canvas.
+Six prominent category cards sit in a bordered, colour-coded selection panel beside a large, flat document canvas. Each category has a large label and icon; the current selection has a checkmark and stronger border. Selecting a category updates the preview and its Open PDF and Download actions. The document scrolls independently while the landing page stays within the viewport. Zoom in enlarges the page for closer reading; Fit width restores the initial size. Desktop also offers an expanded reader. On mobile, the six selectors become a compact three-column strip above the canvas.
 
 The preview shows the first page; Open PDF provides every page and working links. Layout rules are in `public/viewport.css`. Rebuild generated HTML with `python build.py` after editing `template.html`.
