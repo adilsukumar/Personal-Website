@@ -4,9 +4,11 @@ A standalone static gallery published at https://www.resume.adilsukumar.xyz and 
 
 ## Design and interaction
 
-The landing page displays all six illustrated document covers in one viewport, with no permanent document preview. Desktop uses three columns and two rows; mobile uses two columns and three rows. Each cover opens a dedicated reader with a large first-page preview, zoom, category switching, PDF access and desktop download action. Escape closes the reader and restores focus. Without JavaScript, the cover links open the PDFs directly. Reduced motion and keyboard focus are supported.
+The landing page displays all six illustrated document covers in one viewport, with no permanent document preview. Desktop uses three columns and two rows; mobile uses two columns and three rows. Each cover has a large, filled Read resume call to action and opens a dedicated reader that renders every PDF page, with zoom, category switching, PDF access and desktop download action. Escape closes the reader and restores focus. Without JavaScript, the cover links open the PDFs directly. Reduced motion and keyboard focus are supported.
 
-The reader clearly identifies its first-page preview. Open PDF provides every page, selectable text and working links.
+The reader loads the original PDF and uses Mozilla PDF.js 6.4.299, pinned through jsDelivr, to render all pages at 2–2.5 times their displayed resolution. Zoom and viewport resizing trigger fresh renders. Nearby pages render on demand to limit memory use. Page position, per-page labels, accessible text and clickable PDF link annotations are included. Switching or closing cancels obsolete work. If the library or document cannot load, a visible error links directly to the original PDF. The Open PDF action provides the browser’s native selectable-text PDF view.
+
+PDF.js is Apache-2.0 licensed: https://github.com/mozilla/pdf.js. The pinned library and matching worker are loaded only when a reader is opened; no resume data is sent to the CDN. Usage follows the official examples: https://mozilla.github.io/pdf.js/examples/.
 
 ## Editing
 
