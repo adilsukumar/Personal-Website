@@ -43,8 +43,8 @@ In Vercel, use the **Personal-Website** repository, root directory **resume-site
 
 No credentials, Vercel login files, Word documents or B.Tech. resumes belong in this folder.
 
-## Document desk layout
+## Editions layout
 
-Six prominent category cards sit in a bordered, colour-coded selection panel beside a large, flat document canvas. Each category has a large label and icon; the current selection has a checkmark and stronger border. Selecting a category updates the preview and its Open PDF and Download actions. The document scrolls independently while the landing page stays within the viewport. Zoom in enlarges the page for closer reading; Fit width restores the initial size. Desktop also offers an expanded reader. On mobile, the six selectors become a compact three-column strip above the canvas.
+Six folder-style category tabs span the top of the page and connect to one large document viewer below. On mobile the tabs form a three-column, two-row shelf. The page stays within the viewport; the document canvas scrolls independently. Selecting a tab updates the preview, descriptive label, Open PDF and Download actions. Zoom in enlarges the document; Fit width restores it. Desktop also offers an expanded reader.
 
 The preview shows the first page; Open PDF provides every page and working links. Layout rules are in `public/viewport.css`. Rebuild generated HTML with `python build.py` after editing `template.html`.
