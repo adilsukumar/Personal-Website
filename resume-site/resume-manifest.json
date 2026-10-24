@@ -8,12 +8,20 @@
     "sha256": "7c106e8b982842735b3b3a03b3bf83a62d5da7ede2cca0dfda3de04e7aa6e4c1"
   },
   {
-    "category": "tech",
-    "title": "Technology",
-    "url": "/resumes/adil-sukumar-tech-intmtech.pdf",
-    "preview": "/previews/tech.webp",
+    "category": "software",
+    "title": "Software",
+    "url": "/resumes/adil-sukumar-software-intmtech.pdf",
+    "preview": "/previews/software.webp",
     "pages": 1,
-    "sha256": "d34839cc52b6549ad7068f6ce7abaa7f2d5536cfab42e445492192e26863ecfa"
+    "sha256": "b00957e8bcb1a47ebe9e992cb205a771dd879ccf0c87ed7aac60367b0a0eb6b4"
+  },
+  {
+    "category": "hardware",
+    "title": "Hardware",
+    "url": "/resumes/adil-sukumar-hardware-intmtech.pdf",
+    "preview": "/previews/hardware.webp",
+    "pages": 1,
+    "sha256": "c84208e38999dbe479125bf212b4b3ed8d4323096ba55e403b1f92821cccddab"
   },
   {
     "category": "banking",
