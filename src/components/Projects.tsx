@@ -16,7 +16,8 @@ type Project = {
   description: string;
   tags: string[];
   link?: string;
-  github: string;
+  github?: string;
+  status?: string;
   signal: string;
   accent: string;
 };
@@ -24,9 +25,9 @@ type Project = {
 const PROJECTS: Project[] = [
   {
     title: "Pawsitive Diagnostics",
-    date: "Mar 2026",
+    date: "Feb 2026 – Present",
     description:
-      "AI-powered dog health monitoring across bark, skin, air, motion, location, and vital signals — combining an ESP32 collar with real-time tracking and diagnostic workflows.",
+      "Leading software, hardware and machine learning for a wearable animal-health prototype, connecting collar telemetry, individual baselines, activity recognition and context-aware alerts.",
     tags: ["Hardware", "AI", "IoT"],
     link: "https://pawsitive-diagnostics.vercel.app",
     github: "https://github.com/adilsukumar/Pawsitive-Diagnostics-V2",
@@ -59,7 +60,7 @@ const PROJECTS: Project[] = [
     title: "AI Mock Interviewer",
     date: "Jul 2026",
     description:
-      "A mock AI interviewer that tests knowledge and confidence against the company, role, and position a candidate is applying for.",
+      "Voice-first interview practice with role-specific Groq conversations, browser speech recognition, fallback transcription and generated feedback. Includes bounded recordings and microphone recovery.",
     tags: ["AI", "TypeScript", "EdTech"],
     link: "https://ai-mock-interviewer-official.vercel.app",
     github: "https://github.com/adilsukumar/AI-Mock-Interviewer",
@@ -70,10 +71,9 @@ const PROJECTS: Project[] = [
     title: "ELLY Smart Home",
     date: "Jun 2026",
     description:
-      "A connected home-automation interface for ElectraWireless, bringing device control, energy intelligence, and the ELLY IoT ecosystem into one responsive experience.",
+      "Co-created an offline-first React/TypeScript smart-home ecosystem with local Web-LLM voice commands, TensorFlow.js vision, BLE/Wi-Fi discovery and Capacitor mobile builds automated through GitHub Actions.",
     tags: ["IoT", "React", "TypeScript"],
-    link: "https://electrawireless-home-automation.vercel.app",
-    github: "https://github.com/adilsukumar/ElectraWireless-IoT-and-Embedded-Systems",
+    status: "Industry work",
     signal: "Ambient automation",
     accent: "#8b5cf6",
   },
@@ -94,7 +94,7 @@ const PROJECTS: Project[] = [
     description:
       "A geo-arbitrage lead-generation platform for discovering businesses without websites and turning location-based research into qualified agency prospects.",
     tags: ["Lead Generation", "Maps", "Full Stack"],
-    link: "https://lead-forge-pro-peach.vercel.app",
+    link: "https://lead-forge-pro-website.vercel.app",
     github: "https://github.com/adilsukumar/LeadForge-Pro",
     signal: "Market discovery",
     accent: "#38bdf8",
@@ -114,7 +114,7 @@ const PROJECTS: Project[] = [
     title: "CyberSHE",
     date: "Sep 2025",
     description:
-      "A women-centric digital safety platform with AI harassment detection, privacy audits, evidence logging, and end-to-end encryption.",
+      "A digital-safety hackathon prototype with support resources, incident-reporting and harassment-analysis workflows, built with React, TypeScript and an Express backend.",
     tags: ["React", "TypeScript", "AI"],
     github:
       "https://github.com/adilsukumar/CyberSHE-WiCyS-Hackathon",
@@ -175,6 +175,195 @@ const PROJECTS: Project[] = [
     signal: "Problem-solving cadence",
     accent: "#fb7185",
   },
+  {
+    "title": "Whisper for Windows",
+    "description": "A native Windows assistant combining a WPF interface and Python services with local speech, consented screen context, cancellation controls and a separate FastAPI account service.",
+    "tags": [
+      "C# / WPF",
+      "Python",
+      "FastAPI"
+    ],
+    "signal": "Desktop intelligence",
+    "accent": "#67e8f9",
+    "date": "2026",
+    "github": "https://github.com/adilsukumar/Whisper-for-Windows"
+  },
+  {
+    "title": "PoshanTrack Photo AI",
+    "description": "A private Node.js/Express backend for meal-photo estimates with Indian-food context. Implements validated image uploads, bounded requests, Gemini/Groq routing and structured output checks.",
+    "tags": [
+      "Node.js",
+      "Express",
+      "Multimodal AI"
+    ],
+    "status": "Private backend",
+    "signal": "Food with context",
+    "accent": "#fb923c",
+    "date": "2026"
+  },
+  {
+    "title": "Portiva",
+    "description": "A household delivery-robot development project with shared mission controllers, heading-aware A* planning, collision checks, an Android bench demo and Uno firmware. Physical motor outputs remain disabled pending commissioning.",
+    "tags": [
+      "Robotics",
+      "Android",
+      "Java / C++"
+    ],
+    "status": "Development prototype",
+    "signal": "Follow. Carry. Deliver.",
+    "accent": "#fbbf24",
+    "date": "2026",
+    "github": "https://github.com/adilsukumar/Portiva"
+  },
+  {
+    "title": "SoftSpace & SoftFlex",
+    "description": "Adjustable headphone concepts with glasses-aware cushions, Autodesk Fusion design history, STEP assemblies and Python/FEA comparisons. Documents material assumptions and physical tests still required.",
+    "tags": [
+      "Fusion / CAD",
+      "FEA",
+      "Python"
+    ],
+    "status": "Design study",
+    "signal": "Comfort through engineering",
+    "accent": "#c4b5fd",
+    "date": "2026",
+    "github": "https://github.com/adilsukumar/SoftSpace"
+  },
+  {
+    "title": "SciGenius Research Tooling",
+    "description": "PDF text extraction, spaCy entities and NetworkX graphs provide context for staged research drafts. Connects a FastAPI service, Vite interface, Rich CLI, SQLite checkpoints and Markdown export.",
+    "tags": [
+      "FastAPI",
+      "NLP",
+      "Knowledge Graphs"
+    ],
+    "signal": "Research workflows",
+    "accent": "#818cf8",
+    "date": "2026",
+    "github": "https://github.com/adilsukumar/SciGenius-Research-Paper-Builder"
+  },
+  {
+    "title": "Posture Monitor",
+    "description": "Browser-side MediaPipe Pose feedback with valid-landmark checks, normalized geometry, upright calibration and session-only slouch/lean counters. A heuristic posture aid rather than a diagnostic tool.",
+    "tags": [
+      "MediaPipe",
+      "JavaScript",
+      "Computer Vision"
+    ],
+    "signal": "Find your baseline",
+    "accent": "#2dd4bf",
+    "date": "2026",
+    "github": "https://github.com/adilsukumar/Posture-Detection"
+  },
+  {
+    "title": "ATS Resume–Job Fit Analyzer",
+    "description": "A local Python course project implementing TF-IDF and cosine similarity with NumPy, PDF/text extraction and ranked missing keywords. Includes mathematical tests; its score measures text overlap.",
+    "tags": [
+      "Python",
+      "NumPy",
+      "NLP"
+    ],
+    "signal": "Inspectable text comparison",
+    "accent": "#60a5fa",
+    "date": "2026",
+    "github": "https://github.com/adilsukumar/ATS-Resume-Job-Fit-Analyzer"
+  },
+  {
+    "title": "Atlas Voice Assistant",
+    "date": "2023 · updated 2026",
+    "description": "An educational Python assistant with explicit voice/text commands, allowlisted desktop actions and web lookups. Separates parsing from microphone access and supports dry-run execution and dependency-free tests.",
+    "tags": [
+      "Python",
+      "Speech",
+      "Automation"
+    ],
+    "signal": "Small commands. Clear actions.",
+    "accent": "#38bdf8",
+    "github": "https://github.com/adilsukumar/Atlas-Voice-Assistant"
+  },
+  {
+    "title": "KAN ECG & Symbolic Fidelity",
+    "description": "An ECG classification study using Kolmogorov–Arnold networks and feature-matched baselines across MIT-BIH, INCART and SVDB. Evaluates symbolic surrogates against fidelity, sensitivity and complexity gates.",
+    "tags": [
+      "Machine Learning",
+      "ECG",
+      "Symbolic Models"
+    ],
+    "status": "Research study",
+    "signal": "Interpretable cardiac signals",
+    "accent": "#f0abfc",
+    "date": "2026",
+    "github": "https://github.com/adilsukumar/KAN-ECG-Research-Paper"
+  },
+  {
+    "title": "Zebrafish Formaldehyde Toxicity",
+    "description": "Reproducible analysis of 96-hour mortality with Abbott correction and probit interpolation, sensitivity checks and JSON/SVG outputs. Includes six OECD QSAR Toolbox/literature reports and source hashes.",
+    "tags": [
+      "Python",
+      "Toxicology",
+      "OECD QSAR Toolbox"
+    ],
+    "status": "Computational analysis",
+    "signal": "Evidence and endpoints",
+    "accent": "#a78bfa",
+    "date": "2026",
+    "github": "https://github.com/adilsukumar/Zebrafish-Formaldehyde-Toxicity"
+  },
+  {
+    "title": "Moomentum & Sensor Experiments",
+    "description": "Animal-care interface prototypes alongside independently runnable motion, temperature, vital, lighting and skin experiments. Preserves training/export helpers, attributed reference data and module-specific validation limits.",
+    "tags": [
+      "React",
+      "ESP32",
+      "Sensor Analysis"
+    ],
+    "status": "Prototype collection",
+    "signal": "One interface. Many experiments.",
+    "accent": "#6ee7b7",
+    "date": "2026",
+    "github": "https://github.com/adilsukumar/Moomentum"
+  },
+  {
+    "title": "CardSavvy",
+    "description": "A 333-card comparison prototype across ten markets with explainable heuristic rankings, filters and a browser-local wallet. Includes normalized currency scoring and catalogue regression checks.",
+    "tags": [
+      "React",
+      "TypeScript",
+      "Zod"
+    ],
+    "link": "https://cardsavvy-adil-sukumar.vercel.app/",
+    "signal": "Compare clearly",
+    "accent": "#34d399",
+    "date": "2026",
+    "github": "https://github.com/adilsukumar/CardSavvy"
+  },
+  {
+    "title": "A2Z Curriculum Tracker",
+    "description": "An independent tracker for the credited A2Z curriculum: 402 bundled problems across 19 steps, with search, bookmarks, notes, review flags, daily plans and browser-local progress backups.",
+    "tags": [
+      "React",
+      "Vite",
+      "Local Storage"
+    ],
+    "link": "https://a2z-dsa-sheet.vercel.app/",
+    "signal": "Roadmap into routine",
+    "accent": "#fb7185",
+    "date": "2026",
+    "github": "https://github.com/adilsukumar/A2Z-DataSheet-Replica"
+  },
+  {
+    "title": "NIFTY Paper Trading & Risk Analytics",
+    "description": "A research and paper-trading system with walk-forward model comparisons, restart-safe state, an event journal, fee estimates, stale-data checks and drawdown controls. Does not place live broker orders.",
+    "tags": [
+      "Python",
+      "XGBoost",
+      "Risk Analytics"
+    ],
+    "status": "Private research project",
+    "signal": "Evaluate before execution",
+    "accent": "#fbbf24",
+    "date": "2026"
+  },
 ];
 
 const ORBIT_POINTS = PROJECTS.map((_, index) => {
@@ -182,8 +371,8 @@ const ORBIT_POINTS = PROJECTS.map((_, index) => {
   const radians = (angle * Math.PI) / 180;
 
   return {
-    left: `${50 + Math.cos(radians) * 42}%`,
-    top: `${50 + Math.sin(radians) * 42}%`,
+    left: `${50 + Math.cos(radians) * (index % 2 === 0 ? 43 : 30)}%`,
+    top: `${50 + Math.sin(radians) * (index % 2 === 0 ? 43 : 30)}%`,
     angle,
   };
 });
@@ -218,7 +407,7 @@ function ProjectDossier({ project, index, limitMotion }: { project: Project; ind
           </div>
           <div className="flex items-center gap-2 font-mono text-[9px] tracking-[0.18em] text-emerald-300 uppercase">
             <motion.span className="h-1.5 w-1.5 rounded-full bg-emerald-300" animate={limitMotion ? { opacity: 1, boxShadow: "0 0 8px rgba(110,231,183,.55)" } : { opacity: [0.35, 1, 0.35], boxShadow: ["0 0 0 rgba(110,231,183,0)", "0 0 13px rgba(110,231,183,.9)", "0 0 0 rgba(110,231,183,0)"] }} transition={{ duration: 2.2, repeat: Infinity }} />
-            Deployed
+            {project.status ?? (project.link ? "Web application" : "Source project")}
           </div>
         </div>
 
@@ -238,7 +427,7 @@ function ProjectDossier({ project, index, limitMotion }: { project: Project; ind
             <p className="font-mono text-[10px] tracking-[0.2em] text-slate-500 uppercase">{project.date}</p>
             <div className="flex items-center gap-5 text-xs font-medium">
               {project.link && <a href={project.link} target="_blank" rel="noreferrer" className="group flex items-center gap-2 text-slate-300 transition-colors hover:text-cyan-200">Launch <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>}
-              <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-slate-400 transition-colors hover:text-violet-200"><Code className="h-4 w-4" /> Source</a>
+              {project.github && <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-slate-400 transition-colors hover:text-violet-200"><Code className="h-4 w-4" /> Source</a>}
             </div>
           </div>
         </div>
@@ -307,7 +496,10 @@ function DesktopProjects() {
           </div>
           <div className="max-w-sm text-right">
             <p className="font-mono text-[9px] tracking-[0.25em] text-cyan-300/70 uppercase">Project constellation</p>
-            <p className="mt-2 text-xs leading-5 text-slate-500">{PROJECTS.length} builds. One evolving orbit across AI, hardware, biology, and product.</p>
+            <label htmlFor="project-picker" className="mt-2 block text-xs text-slate-400">Choose any project</label>
+            <select id="project-picker" value={activeIndex} onChange={(event) => selectProject(Number(event.target.value))} className="mt-2 w-full max-w-xs rounded-lg border border-cyan-200/25 bg-[#061117] px-3 py-2 text-sm text-white focus-visible:outline-2 focus-visible:outline-cyan-200">
+              {PROJECTS.map((item, index) => <option key={item.title} value={index}>{item.title}</option>)}
+            </select>
           </div>
         </div>
 
@@ -331,14 +523,12 @@ function DesktopProjects() {
                 return (
                   <button type="button" key={item.title} onClick={() => selectProject(index)} aria-label={`Open project ${index + 1}: ${item.title}`} aria-pressed={active} className="group absolute z-20 -translate-x-1/2 -translate-y-1/2 focus-visible:outline-none" style={{ left: orbitPoint.left, top: orbitPoint.top }}>
                     {active && <motion.span layoutId="project-orbit-halo" className="absolute inset-[-10px] rounded-full border" style={{ borderColor: `${item.accent}80`, boxShadow: `0 0 24px ${item.accent}65` }} transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }} />}
-                    <span className={`relative flex h-10 w-10 items-center justify-center rounded-full border bg-black font-mono text-[9px] transition-all duration-500 lg:h-12 lg:w-12 ${active ? "scale-110 text-white" : "border-white/15 text-slate-600 group-hover:border-white/40 group-hover:text-slate-300"}`} style={active ? { borderColor: item.accent, boxShadow: `inset 0 0 17px ${item.accent}2c` } : undefined}>{String(index + 1).padStart(2, "0")}</span>
+                    <span className={`relative flex h-10 w-10 items-center justify-center rounded-full border bg-black font-mono text-[9px] transition-all duration-500 lg:h-10 lg:w-10 ${active ? "scale-110 text-white" : "border-white/15 text-slate-600 group-hover:border-white/40 group-hover:text-slate-300"}`} style={active ? { borderColor: item.accent, boxShadow: `inset 0 0 17px ${item.accent}2c` } : undefined}>{String(index + 1).padStart(2, "0")}</span>
                   </button>
                 );
               })}
 
-              <AnimatePresence mode="wait">
-                <motion.p key={project.title} initial={{ opacity: 0, y: 7 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -7 }} className="absolute right-0 bottom-[3%] left-0 text-center font-mono text-[8px] tracking-[0.2em] text-slate-600 uppercase">{project.signal}</motion.p>
-              </AnimatePresence>
+              <p className="absolute right-0 bottom-[3%] left-0 text-center font-mono text-[8px] tracking-[0.2em] text-slate-400 uppercase">{project.signal}</p>
             </div>
           </div>
 
@@ -384,7 +574,7 @@ function MobileProjects() {
               <div className="mt-5 flex flex-wrap gap-2">{project.tags.map((tag) => <span key={tag} className="rounded-full border border-white/10 px-2.5 py-1 font-mono text-[8px] tracking-[0.1em] text-slate-400 uppercase">{tag}</span>)}</div>
               <div className="mt-5 flex gap-5 border-t border-white/[0.07] pt-4 text-xs">
                 {project.link && <a href={project.link} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-cyan-200">Launch <ArrowUpRight className="h-3.5 w-3.5" /></a>}
-                <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-slate-400"><Code className="h-3.5 w-3.5" /> Source</a>
+                {project.github && <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-slate-400"><Code className="h-3.5 w-3.5" /> Source</a>}
               </div>
             </div>
           </motion.article>

@@ -344,9 +344,9 @@ export default function PortraitReveal() {
               style={{ opacity: bioOpacity, y: bioY }}
               className="mb-6 text-sm leading-relaxed font-light text-gray-400 sm:mb-10 sm:text-base lg:text-lg"
             >
-              From founding Pawsitive Diagnostics to leading The NeuroByte
-              Society, I build scalable, edge-computed hardware-software
-              ecosystems aimed at real-world problems.
+              I lead software and hardware at Pawsitive Diagnostics and serve as
+              Member Secretary – Technical on the VIT Student Council. My work
+              connects embedded systems, software engineering and computational biology.
             </motion.p>
             <motion.div
               style={{ opacity: statsOpacity, y: statsY }}
@@ -378,7 +378,7 @@ export default function PortraitReveal() {
                 { label: "Focus", value: "AI × Bioinformatics" },
                 { label: "Based in", value: "India" },
                 { label: "Building", value: "Pawsitive Diagnostics" },
-                { label: "Leading", value: "The NeuroByte Society" },
+                { label: "Serving", value: "VIT Student Council" },
               ].map((item) => (
                 <div
                   key={item.label}

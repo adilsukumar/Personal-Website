@@ -1,5 +1,6 @@
 import AmbientStarfield from "@/components/AmbientStarfield";
 import Certifications from "@/components/Certifications";
+import Capabilities from "@/components/Capabilities";
 import Contact from "@/components/Contact";
 import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
@@ -32,6 +33,7 @@ export default function Home() {
           through instead sidesteps the question entirely. */}
       <div className="relative">
         <AmbientStarfield />
+        <Capabilities />
         <Experience />
         <SectionDivider from="experience" to="certifications" />
         <Certifications />

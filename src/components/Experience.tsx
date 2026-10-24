@@ -67,15 +67,15 @@ const JOURNEY: JourneyMilestone[] = [
     company: "Pawsitive Diagnostics Pvt. Ltd.",
     date: "Feb 2026 – Present",
     marker: "FEB 2026",
-    desc: "Building a hardware-software ecosystem for proactive pet healthcare: an AI-driven diagnostic collar that turns live biometric signals into actionable health alerts.",
+    desc: "Lead software, hardware and machine learning for a wearable animal-health prototype, integrating motion, acoustic, environmental and surface-temperature sensing with individual baselines, activity recognition and context-aware alerts.",
     icon: BriefcaseBusiness,
     x: 175,
     y: 350,
     ongoing: true,
   },
   {
-    role: "Web Development Intern",
-    shortRole: "Web Development",
+    role: "Product Experience & Operations Intern",
+    shortRole: "Product QA",
     company: "TrustLayer Labs",
     date: "May 2026 – Jun 2026",
     marker: "MAY 2026",
@@ -90,20 +90,22 @@ const JOURNEY: JourneyMilestone[] = [
     company: "ElectraWireless LLC",
     date: "May 2026 – Aug 2026",
     marker: "AUG 2026",
-    desc: "Led IoT and embedded-systems work for a scalable AI-integrated automation platform with secure edge-to-cloud infrastructure, real-time energy analytics, role-based access, and TLS encryption.",
+    desc: "Co-created ELLY’s offline-first React/TypeScript ecosystem: local Web-LLM voice commands, TensorFlow.js/MobileNet appliance scanning and facial recognition, BLE/Wi-Fi discovery, MQTT and energy telemetry. Automated Capacitor iOS/Android builds with GitHub Actions.",
     icon: Cpu,
     x: 700,
     y: 90,
   },
+  { role: "Student Researcher (Part-time)", shortRole: "Student Research", company: "VIT Bhopal University", date: "Jul 2026 – Present", marker: "JUL 2026", desc: "Perform sample preparation, Gram staining, microscopy and foundational tissue-culture procedures under faculty mentorship; document results and maintain aseptic conditions.", icon: Dna, x: 520, y: 52, ongoing: true },
+  { role: "Data Science Job Simulation", shortRole: "Data Science Simulation", company: "British Airways", date: "Oct 2026 – Present", marker: "OCT 2026", desc: "An ongoing self-paced job simulation exploring customer-booking data, preprocessing, feature engineering and predictive analytics for airline business decisions.", icon: BriefcaseBusiness, x: 285, y: 53, ongoing: true },
 ];
 
 const SPIRAL_PATH =
-  "M 350 330 C 430 280 475 360 430 415 C 360 505 205 460 175 350 C 135 205 315 120 470 165 C 625 210 700 355 620 485 C 530 630 270 610 120 475 C 5 370 60 170 230 90 C 390 15 590 40 700 90";
+  "M 350 330 C 430 280 475 360 430 415 C 360 505 205 460 175 350 C 135 205 315 120 470 165 C 625 210 700 355 620 485 C 530 630 270 610 120 475 C 5 370 60 170 230 90 C 390 15 590 40 700 90 C 650 40 580 40 520 52 C 445 30 355 30 285 53";
 
 // Measured fractions of the SVG path at each milestone coordinate. The last
 // jump is intentionally large because the spiral completes its outer sweep
 // before arriving at the present-day node.
-const JOURNEY_PATH_STOPS = [0, 0.0646, 0.1768, 0.3247, 1];
+const JOURNEY_PATH_STOPS = [0, 0.06, 0.16, 0.29, 0.9, 0.95, 1];
 const JOURNEY_HOLD_PORTION = 0.68;
 
 const STARS = Array.from({ length: 24 }, (_, index) => ({

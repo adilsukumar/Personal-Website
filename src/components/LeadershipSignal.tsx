@@ -24,10 +24,10 @@ type LeadershipRole = {
 
 const SIGNAL_ROLES: LeadershipRole[] = [
   {
-    role: "President",
-    signalLabel: "PRESIDENT",
-    org: "The NeuroByte Society, VIT",
-    date: "Dec 2025 – Present",
+    role: "Member Secretary – Technical",
+    signalLabel: "VIT COUNCIL",
+    org: "VIT Student Council",
+    date: "Sep 2026 – Present",
     phase: "Lead",
     amplitude: 148,
     x: 70,
@@ -99,7 +99,7 @@ const SIGNAL_ROLES: LeadershipRole[] = [
     role: "Student Partner",
     signalLabel: "STUDENT PARTNER",
     org: "Internshala",
-    date: "Aug 2025 – Oct 2025",
+    date: "Sep 2025 – Oct 2025",
     phase: "Represent",
     amplitude: 58,
     x: 1010,
@@ -113,9 +113,11 @@ const SIGNAL_ROLES: LeadershipRole[] = [
     amplitude: 66,
     x: 1130,
   },
+  { role: "Program Representative, AI & Bioinformatics", signalLabel: "PROGRAM REP", org: "VIT Bhopal University", date: "2026–27", phase: "Represent", amplitude: 72, x: 1250 },
+  { role: "Student Volunteer", signalLabel: "COMMUNITY", org: "Arvind Foundation", date: "Mar 2023 – Apr 2023", phase: "Represent", amplitude: 58, x: 1370 },
 ];
 
-const VIEWBOX_WIDTH = 1200;
+const VIEWBOX_WIDTH = 1440;
 const VIEWBOX_HEIGHT = 380;
 const BASELINE = 238;
 
@@ -187,7 +189,7 @@ function SignalReadout({ role, index }: { role: LeadershipRole; index: number })
               <span className="text-slate-500">{role.date}</span>
               <span className="flex items-center gap-1.5 text-cyan-300">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-300 shadow-[0_0_8px_rgba(103,232,249,0.8)]" />
-                Active
+                {role.date.includes("Present") || role.date === "2026–27" ? "Current role" : "Past role"}
               </span>
             </div>
           </div>

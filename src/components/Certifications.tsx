@@ -23,36 +23,187 @@ type ArchiveItem = {
 };
 
 const STATS = [
-  { value: "18", label: "Credentials" },
+  { value: "26", label: "Credentials" },
   { value: "3", label: "Podium finishes" },
-  { value: "9.21", label: "CGPA" },
+  { value: "9.10", label: "CGPA" },
 ];
 
 const ARCHIVE_ITEMS: ArchiveItem[] = [
-  { title: "CyberShield Hackathon '25", issuer: "WiCyS VIT Bhopal Student Chapter", date: "2025", distinction: "1st Place", category: "compete" },
-  { title: "SKITECH National Innothon 3.0", issuer: "Indore", date: "2026", distinction: "1st Runner-Up", category: "compete" },
-  { title: "AP SASI National Hackathon 2K26", issuer: "SASI Institute of Technology & Engineering, Andhra Pradesh", date: "Feb 2026", distinction: "Top 6 Nationwide", category: "compete" },
-  { title: "Samsung Solve for Tomorrow 2026", issuer: "Samsung", date: "2026", distinction: "Participant", category: "compete" },
-  { title: "SEBI Investor Awareness Test", issuer: "NISM / SEBI", date: "Nov 2025", distinction: "49 / 50 — Pass", category: "learn" },
-  { title: "Python Essentials", issuer: "Vityarthi, VIT Bhopal", date: "Nov 2025", distinction: "100% project score", category: "learn" },
-  { title: "Digital Literacy", issuer: "Vityarthi, VIT Bhopal", date: "Feb 2026", category: "learn" },
-  { title: "Quantum Computing Workshop", issuer: "VIT Bhopal × IBM, Keysight, IISER Bhopal, Q-CTRL", date: "Nov 2025", category: "learn" },
-  { title: "ML in Real-World Applications", issuer: "VIT Bhopal × MP Council of Science & Technology", date: "Feb 2026", category: "learn" },
-  { title: "Build Smarter, Scalable AI Agents", issuer: "UiPath × GeeksforGeeks", date: "2026", category: "learn" },
-  { title: "Responsible AI: Reimagining AI for All", issuer: "VIT Bhopal ACM Student Chapter", date: "Sep 2025", category: "learn" },
-  { title: "Entrepreneurship Mindset for Young Innovators", issuer: "Institution's Innovation Council", date: "Dec 2025", category: "learn" },
-  { title: "National Financial Literacy Quiz 2026", issuer: "NISM / SEBI", date: "2026", category: "learn" },
-  { title: "National Science Talent Search Examination", issuer: "NSTSE", date: "", distinction: "State Rank 2", category: "foundation" },
-  { title: "All India Maths & Science Talent Examination", issuer: "", date: "", distinction: "AIR 933", category: "foundation" },
-  { title: "International English Olympiad", issuer: "SOF", date: "", distinction: "AIR 44", category: "foundation" },
-  { title: "National Cyber Olympiad", issuer: "SOF", date: "", distinction: "International Rank 238", category: "foundation" },
-  { title: "DELF A2 (French)", issuer: "Alliance Française of Madras", date: "", category: "foundation" },
+  {
+    "title": "CyberShield Hackathon '25",
+    "issuer": "WiCyS VIT Bhopal Student Chapter",
+    "date": "2025",
+    "distinction": "1st Place",
+    "category": "compete"
+  },
+  {
+    "title": "SKITECH National Innothon 3.0",
+    "issuer": "Indore",
+    "date": "2026",
+    "distinction": "1st Runner-Up",
+    "category": "compete"
+  },
+  {
+    "title": "AP SASI National Hackathon 2K26",
+    "issuer": "SASI Institute of Technology & Engineering, Andhra Pradesh",
+    "date": "Feb 2026",
+    "distinction": "Top 6 Nationwide",
+    "category": "compete"
+  },
+  {
+    "title": "Samsung Solve for Tomorrow 2026",
+    "issuer": "Samsung",
+    "date": "2026",
+    "distinction": "Participant",
+    "category": "compete"
+  },
+  {
+    "title": "Build With Bharat 2026",
+    "issuer": "NIT Delhi",
+    "date": "2026",
+    "distinction": "Selected among 25 virtual-round teams",
+    "category": "compete"
+  },
+  {
+    "title": "Zuup Far Away 2026",
+    "issuer": "Zuup",
+    "date": "2026",
+    "distinction": "Qualified for online MVP submission",
+    "category": "compete"
+  },
+  {
+    "title": "SEBI Investor Awareness Test",
+    "issuer": "NISM / SEBI",
+    "date": "Nov 2025",
+    "distinction": "49 / 50 — Pass",
+    "category": "learn"
+  },
+  {
+    "title": "Python Essentials",
+    "issuer": "Vityarthi, VIT Bhopal",
+    "date": "Nov 2025",
+    "distinction": "100% project score",
+    "category": "learn"
+  },
+  {
+    "title": "Digital Literacy",
+    "issuer": "Vityarthi, VIT Bhopal",
+    "date": "Feb 2026",
+    "category": "learn"
+  },
+  {
+    "title": "Quantum Computing Workshop",
+    "issuer": "VIT Bhopal × IBM, Keysight, IISER Bhopal, Q-CTRL",
+    "date": "Nov 2025",
+    "category": "learn"
+  },
+  {
+    "title": "ML in Real-World Applications",
+    "issuer": "VIT Bhopal × MP Council of Science & Technology",
+    "date": "Feb 2026",
+    "category": "learn"
+  },
+  {
+    "title": "Build Smarter, Scalable AI Agents",
+    "issuer": "UiPath × GeeksforGeeks",
+    "date": "2026",
+    "category": "learn"
+  },
+  {
+    "title": "Responsible AI: Reimagining AI for All",
+    "issuer": "VIT Bhopal ACM Student Chapter",
+    "date": "Sep 2025",
+    "category": "learn"
+  },
+  {
+    "title": "Entrepreneurship Mindset for Young Innovators",
+    "issuer": "Institution's Innovation Council",
+    "date": "Dec 2025",
+    "category": "learn"
+  },
+  {
+    "title": "National Financial Literacy Quiz 2026",
+    "issuer": "NISM / SEBI",
+    "date": "2026",
+    "category": "learn"
+  },
+  {
+    "title": "Introduction to Machine Learning",
+    "issuer": "NPTEL · IIT Kharagpur",
+    "date": "Jul–Sep 2026",
+    "distinction": "70% · 8-week course",
+    "category": "learn"
+  },
+  {
+    "title": "Fundamentals of AI and ML",
+    "issuer": "Vityarthi · VIT Bhopal",
+    "date": "Sep 2026",
+    "category": "learn"
+  },
+  {
+    "title": "Introduction to Machine Learning",
+    "issuer": "Kaggle",
+    "date": "Sep 2026",
+    "category": "learn"
+  },
+  {
+    "title": "Fundamentals of PCB Design",
+    "issuer": "Anna University",
+    "date": "Aug 2026",
+    "category": "learn"
+  },
+  {
+    "title": "GitHub Ultimate: Master Git and GitHub",
+    "issuer": "Udemy",
+    "date": "Aug 2025",
+    "category": "learn"
+  },
+  {
+    "title": "National Science Talent Search Examination",
+    "issuer": "NSTSE",
+    "date": "",
+    "distinction": "State Rank 2",
+    "category": "foundation"
+  },
+  {
+    "title": "All India Maths & Science Talent Examination",
+    "issuer": "",
+    "date": "",
+    "distinction": "AIR 933",
+    "category": "foundation"
+  },
+  {
+    "title": "International English Olympiad",
+    "issuer": "SOF",
+    "date": "",
+    "distinction": "AIR 44",
+    "category": "foundation"
+  },
+  {
+    "title": "National Cyber Olympiad",
+    "issuer": "SOF",
+    "date": "",
+    "distinction": "International Rank 238",
+    "category": "foundation"
+  },
+  {
+    "title": "DELF A2 (French)",
+    "issuer": "Alliance Française of Madras",
+    "date": "",
+    "category": "foundation"
+  },
+  {
+    "title": "Vigyan Sarvatra Pujyate Valedictory Quiz",
+    "issuer": "Vigyan Sarvatra Pujyate",
+    "date": "Feb 2022",
+    "category": "foundation"
+  }
 ];
 
 const CATEGORY_META = [
-  { key: "compete" as const, label: "Compete", range: "01—04", color: "#67e8f9" },
-  { key: "learn" as const, label: "Learn", range: "05—13", color: "#818cf8" },
-  { key: "foundation" as const, label: "Foundation", range: "14—18", color: "#c084fc" },
+  { key: "compete" as const, label: "Compete", range: "01—06", color: "#67e8f9" },
+  { key: "learn" as const, label: "Learn", range: "07—20", color: "#818cf8" },
+  { key: "foundation" as const, label: "Foundation", range: "21—26", color: "#c084fc" },
 ];
 // Keep the archive active through most of the section, then reserve the final
 // stretch for a slow handoff into Projects. The taller wrapper below gives
@@ -272,7 +423,7 @@ function MobileArchive() {
               </div>
               <div className="space-y-3">
                 {items.map((item, index) => (
-                  <motion.article key={item.title} initial={{ opacity: 0, y: 18, rotateX: -5 }} whileInView={{ opacity: 1, y: 0, rotateX: 0 }} viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.4, delay: Math.min(index * 0.025, 0.15) }} className="relative overflow-hidden rounded-2xl border bg-[#061015]/80 p-5 backdrop-blur-xl" style={{ borderColor: `${category.color}4d`, boxShadow: "inset 0 1px 0 rgba(255,255,255,.06), 0 12px 35px rgba(0,0,0,.28)" }}>
+                  <motion.article key={`${item.title}-${item.issuer}`} initial={{ opacity: 0, y: 18, rotateX: -5 }} whileInView={{ opacity: 1, y: 0, rotateX: 0 }} viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.4, delay: Math.min(index * 0.025, 0.15) }} className="relative overflow-hidden rounded-2xl border bg-[#061015]/80 p-5 backdrop-blur-xl" style={{ borderColor: `${category.color}4d`, boxShadow: "inset 0 1px 0 rgba(255,255,255,.06), 0 12px 35px rgba(0,0,0,.28)" }}>
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="font-mono text-[8px] tracking-[0.18em] text-slate-600 uppercase">Collection {category.range}</p>
