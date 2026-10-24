@@ -388,7 +388,7 @@ function DesktopArchive() {
           <div className="relative mt-3 h-px bg-white/10">
             <motion.div className="absolute inset-y-0 right-0 left-0 origin-left bg-gradient-to-r from-cyan-300 via-indigo-400 to-violet-400 shadow-[0_0_8px_rgba(103,232,249,0.4)]" style={{ scaleX: reducedMotion ? 1 : progressScale }} />
             {ARCHIVE_ITEMS.map((item, index) => (
-              <button type="button" key={`archive-dot-${item.title}`} onClick={() => selectItem(index)} aria-label={`Open credential ${index + 1}: ${item.title}`} className={`absolute top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full border bg-black transition-all focus-visible:outline-none ${activeIndex === index ? "scale-150 border-cyan-200 shadow-[0_0_8px_rgba(103,232,249,0.8)]" : "border-white/25 hover:border-white/70"}`} style={{ left: `${((index + 0.5) / ARCHIVE_ITEMS.length) * 100}%` }} />
+              <button type="button" key={`archive-dot-${item.title}-${item.issuer}`} onClick={() => selectItem(index)} aria-label={`Open credential ${index + 1}: ${item.title}`} className={`absolute top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full border bg-black transition-all focus-visible:outline-none ${activeIndex === index ? "scale-150 border-cyan-200 shadow-[0_0_8px_rgba(103,232,249,0.8)]" : "border-white/25 hover:border-white/70"}`} style={{ left: `${((index + 0.5) / ARCHIVE_ITEMS.length) * 100}%` }} />
             ))}
           </div>
         </div>

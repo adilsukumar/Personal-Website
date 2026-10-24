@@ -532,7 +532,7 @@ function DesktopProjects() {
             </div>
           </div>
 
-          <div className="min-h-0 py-2"><ProjectDossier project={project} index={activeIndex} limitMotion={limitMotion} /></div>
+          <div className="min-h-0 py-2"><ProjectDossier key={project.title} project={project} index={activeIndex} limitMotion={limitMotion} /></div>
         </div>
 
         <div className="mt-6 shrink-0">
