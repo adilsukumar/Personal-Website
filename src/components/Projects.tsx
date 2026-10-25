@@ -190,13 +190,14 @@ const PROJECTS: Project[] = [
   },
   {
     "title": "PoshanTrack Photo AI",
-    "description": "A private Node.js/Express backend for meal-photo estimates with Indian-food context. Implements validated image uploads, bounded requests, Gemini/Groq routing and structured output checks.",
+    "description": "The Node.js/Express photo-analysis backend for PoshanTrack’s Android nutrition diary, with Indian-food context, validated uploads, bounded requests, Gemini/Groq routing and structured output checks.",
     "tags": [
       "Node.js",
       "Express",
       "Multimodal AI"
     ],
-    "status": "Private backend",
+    "status": "Public source",
+    "github": "https://github.com/adilsukumar/PoshanTrack-Nutrition-Tracker",
     "signal": "Food with context",
     "accent": "#fb923c",
     "date": "2026"
