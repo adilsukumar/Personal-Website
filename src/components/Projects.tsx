@@ -9,6 +9,7 @@ import {
 import { ArrowUpRight, Code, Layers, RadioTower } from "lucide-react";
 import { useIsLowPowerDevice } from "@/lib/useIsLowPowerDevice";
 import SectionEyebrow from "./SectionEyebrow";
+import MobileOrbit from "./MobileOrbit";
 
 type Project = {
   title: string;
@@ -189,12 +190,12 @@ const PROJECTS: Project[] = [
     "github": "https://github.com/adilsukumar/Whisper-for-Windows"
   },
   {
-    "title": "PoshanTrack Photo AI",
-    "description": "The Node.js/Express photo-analysis backend for PoshanTrack’s Android nutrition diary, with Indian-food context, validated uploads, bounded requests, Gemini/Groq routing and structured output checks.",
+    "title": "PoshanTrack Nutrition Tracker",
+    "description": "An Android-first nutrition diary with React Native/Expo, Indian-first food search, encrypted diary storage, Health Connect steps and progress charts. A Node.js/Express photo service adds bounded Gemini/Groq estimates and validated meal review.",
     "tags": [
-      "Node.js",
-      "Express",
-      "Multimodal AI"
+      "React Native / Expo",
+      "Health Connect",
+      "Node.js / AI"
     ],
     "status": "Public source",
     "github": "https://github.com/adilsukumar/PoshanTrack-Nutrition-Tracker",
@@ -552,42 +553,20 @@ function DesktopProjects() {
 }
 
 function MobileProjects() {
-  return (
-    <div className="cinematic-adaptive relative px-6 py-28">
-      <SectionEyebrow number="03" label="Projects" />
-      <div className="flex items-center gap-3">
-        <Layers className="h-7 w-7 text-violet-300" strokeWidth={1.5} />
-        <h2 className="text-3xl font-semibold tracking-tight text-white">Key <span className="font-light text-cyan-200">projects</span></h2>
-      </div>
-      <p className="mt-4 max-w-sm text-sm leading-6 text-slate-500">{PROJECTS.length} builds across AI, hardware, biology, and product.</p>
-
-      <div className="relative mt-12 space-y-5 before:absolute before:top-4 before:bottom-4 before:left-5 before:w-px before:bg-gradient-to-b before:from-cyan-300/50 before:via-violet-400/30 before:to-transparent">
-        {PROJECTS.map((project, index) => (
-          <motion.article key={project.title} initial={{ y: 28 }} whileInView={{ y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }} className="relative pl-12">
-            <span className="absolute top-5 left-2.5 z-10 flex h-5 w-5 items-center justify-center rounded-full border bg-black font-mono text-[7px]" style={{ color: project.accent, borderColor: `${project.accent}90`, boxShadow: `0 0 13px ${project.accent}35` }}>{index + 1}</span>
-            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#050a10]/85 p-5 backdrop-blur-xl">
-              <div className="absolute inset-x-8 top-0 h-px" style={{ background: `linear-gradient(90deg, transparent, ${project.accent}, transparent)` }} />
-              <div className="flex items-start justify-between gap-4">
-                <div><p className="font-mono text-[8px] tracking-[0.18em] uppercase" style={{ color: project.accent }}>{project.signal}</p><h3 className="mt-2 text-xl leading-tight font-semibold text-white">{project.title}</h3></div>
-                <span className="shrink-0 font-mono text-[8px] tracking-[0.12em] text-slate-600 uppercase">{project.date}</span>
-              </div>
-              <p className="mt-4 text-sm leading-6 font-light text-slate-400">{project.description}</p>
-              <div className="mt-5 flex flex-wrap gap-2">{project.tags.map((tag) => <span key={tag} className="rounded-full border border-white/10 px-2.5 py-1 font-mono text-[8px] tracking-[0.1em] text-slate-400 uppercase">{tag}</span>)}</div>
-              <div className="mt-5 flex gap-5 border-t border-white/[0.07] pt-4 text-xs">
-                {project.link && <a href={project.link} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-cyan-200">Launch <ArrowUpRight className="h-3.5 w-3.5" /></a>}
-                {project.github && <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-slate-400"><Code className="h-3.5 w-3.5" /> Source</a>}
-              </div>
-            </div>
-          </motion.article>
-        ))}
-      </div>
-    </div>
-  );
+  const [index, setIndex] = useState(0);
+  const reducedMotion = Boolean(useReducedMotion());
+  return <div className="cinematic-adaptive relative px-6 py-24">
+    <SectionEyebrow number="03" label="Projects" />
+    <div className="flex items-center gap-3"><Layers className="h-6 w-6 text-violet-300" /><h2 className="text-3xl font-semibold tracking-tight text-white">Key <span className="text-cyan-200">projects</span></h2></div>
+    <p className="mt-3 text-sm leading-6 text-slate-400">{PROJECTS.length} builds across AI, hardware, biology and product.</p>
+    <MobileOrbit label="Choose project" items={PROJECTS} activeIndex={index} onSelect={setIndex} />
+    <ProjectDossier key={PROJECTS[index].title} project={PROJECTS[index]} index={index} limitMotion={reducedMotion} />
+  </div>;
 }
 
 export default function Projects() {
   return (
-    <section id="projects" aria-labelledby="project-constellation-title" className="relative isolate overflow-clip bg-black text-white">
+    <section id="projects" aria-label="Projects" className="relative isolate overflow-clip bg-black text-white">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20 bg-[linear-gradient(to_bottom,#000_0%,#01090d_18%,#02030c_58%,#05020a_86%,#000_100%)]" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[34rem] bg-[radial-gradient(ellipse_at_top,rgba(34,211,238,0.15),transparent_68%)]" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[32rem] bg-[radial-gradient(ellipse_at_bottom,rgba(139,92,246,0.12),transparent_68%)]" />

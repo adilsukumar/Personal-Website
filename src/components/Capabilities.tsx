@@ -2,9 +2,9 @@ const CAPABILITIES = [
   { title: "Software & APIs", detail: "Python, C#, Java, C++, TypeScript, SQL · React, Next.js, TanStack · FastAPI, Node.js, Express, REST APIs, WebSockets" },
   { title: "Data & cloud", detail: "PostgreSQL, Supabase, SQLite, Firebase/Firestore · Docker, Docker Compose, GitHub Actions, CI/CD, Vercel, AWS S3/EC2, Linux" },
   { title: "Hardware & robotics", detail: "KiCad schematics, PCB layout, Gerber exports · Arduino, ESP32/ESP32-C3, BLE, Wi-Fi, MQTT · Mission control, A* planning, watchdogs" },
-  { title: "Design & edge AI", detail: "Autodesk Fusion, STEP, FEA · TensorFlow.js, MobileNet, Web-LLM, ONNX · Android, Capacitor, sensor telemetry" },
+  { title: "Design, mobile & edge AI", detail: "Autodesk Fusion, STEP, FEA · TensorFlow.js, MobileNet, Web-LLM, ONNX · React Native/Expo, Health Connect, Android, Capacitor" },
   { title: "Machine learning & NLP", detail: "scikit-learn, XGBoost, LightGBM, NumPy, Pandas · spaCy, NetworkX · Groq/Gemini integration, speech recognition, Web Audio" },
-  { title: "Bioinformatics & research", detail: "SRA Toolkit, FastQC, MultiQC, BWA, SAMtools, GATK, SnpEff/SnpSift · OECD QSAR Toolbox · Cross-dataset evaluation and reproducible analysis" },
+  { title: "Bioinformatics & laboratory", detail: "SRA Toolkit, FastQC, MultiQC, BWA, SAMtools, GATK, SnpEff/SnpSift · OECD QSAR Toolbox · Microscopy, Gram staining, aseptic technique · Reproducible analysis" },
 ];
 
 export default function Capabilities() {

@@ -114,7 +114,7 @@ export default function Hero() {
             style={{ opacity: taglineOpacity, y: taglineY }}
             className="mt-6 max-w-xl text-base text-gray-300 sm:text-lg"
           >
-            Builder at the intersection of hardware, AI, and biology —
+            Builder at the intersection of software, hardware, AI, and biology —
             trying to make a dent.
           </motion.p>
 

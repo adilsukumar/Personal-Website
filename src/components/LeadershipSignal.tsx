@@ -7,6 +7,7 @@ import {
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
+  useInView,
   useTransform,
 } from "framer-motion";
 import { Activity, Radio, Users } from "lucide-react";
@@ -72,7 +73,7 @@ const SIGNAL_ROLES: LeadershipRole[] = [
     role: "Volunteer",
     signalLabel: "UBA VOLUNTEER",
     org: "Unnat Bharat Abhiyan, VIT Bhopal",
-    date: "Academic Year 2025–26",
+    date: "Jan 2026 – Present",
     phase: "Represent",
     amplitude: 78,
     x: 670,
@@ -181,10 +182,10 @@ function SignalReadout({ role, index }: { role: LeadershipRole; index: number })
             <p className="font-mono text-[10px] tracking-[0.22em] text-cyan-300 uppercase lg:text-[11px]">
               Signal {String(index + 1).padStart(2, "0")}
             </p>
-            <h4 className="mt-1 truncate text-xl font-semibold tracking-[0.03em] text-white uppercase lg:text-2xl">
+            <h4 className="mt-1 text-base leading-snug font-semibold tracking-[0.03em] break-words text-white uppercase lg:text-2xl">
               {role.role}
             </h4>
-            <p className="mt-1.5 truncate text-sm text-slate-300 lg:text-base">{role.org}</p>
+            <p className="mt-1.5 text-sm text-slate-300 lg:text-base">{role.org}</p>
             <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[9px] tracking-[0.13em] uppercase lg:text-[10px]">
               <span className="text-slate-500">{role.date}</span>
               <span className="flex items-center gap-1.5 text-cyan-300">
@@ -443,15 +444,27 @@ function DesktopSignal() {
 function MobileSignal() {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeRole = SIGNAL_ROLES[activeIndex];
+  const signalRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(signalRef, { margin: "80px" });
+  const reducedMotion = Boolean(useReducedMotion());
+  const running = inView && !reducedMotion;
 
   return (
-    <div className="cinematic-adaptive py-24">
+    <div ref={signalRef} className="cinematic-adaptive py-24">
       <p className="mb-3 font-mono text-[9px] tracking-[0.36em] text-cyan-200/65 uppercase">Beyond the orbit</p>
       <h3 className="text-3xl font-semibold tracking-tight text-white">Leadership &amp; activities</h3>
       <p className="mt-3 text-sm text-slate-500">Every role leaves a signal.</p>
 
-      <div className="mt-8">
-        <SignalReadout role={activeRole} index={activeIndex} />
+      <div data-mobile-scene="signal" className="relative mt-6 overflow-hidden rounded-2xl border border-cyan-200/20 bg-[#061117]">
+        <svg aria-hidden="true" viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`} className="h-36 w-full">
+          <path d={createSignalPath(1, 0)} fill="none" stroke="#67e8f9" strokeWidth="3" />
+          <motion.path data-wave-path d={createSignalPath(0.7, 2)} fill="none" stroke="#a78bfa" strokeWidth="3" strokeDasharray="30 20" animate={{ strokeDashoffset: running ? [0, -100] : 0 }} transition={{ duration: 4, repeat: running ? Infinity : 0, ease: "linear" }} />
+          <motion.line y1="20" y2="360" stroke="#c4b5fd" strokeWidth="4" animate={{ x1: activeRole.x, x2: activeRole.x }} transition={{ duration: reducedMotion ? 0 : 0.45 }} />
+        </svg>
+        <p className="px-4 pb-4 text-xs text-slate-300">{activeRole.signalLabel} · {activeIndex + 1} / {SIGNAL_ROLES.length}</p>
+      </div>
+      <div className="mt-5">
+        <SignalReadout key={`${activeRole.role}-${activeRole.org}`} role={activeRole} index={activeIndex} />
       </div>
 
       <div className="relative mt-10 pl-10">
@@ -493,7 +506,7 @@ function MobileSignal() {
 
 export default function LeadershipSignal() {
   return (
-    <section aria-labelledby="leadership-signal-title" className="relative">
+    <section aria-label="Leadership and activities" className="relative">
       <DesktopSignal />
       <MobileSignal />
     </section>

@@ -34,8 +34,8 @@ export default function Contact() {
           transition={{ delay: 0.1 }}
           className="mb-12 text-lg font-light text-gray-400"
         >
-          Open to research collaborations, internships, and interesting
-          problems at the edge of hardware and AI.
+          Open to software and embedded-systems internships, AI and
+          bioinformatics research, and product collaborations.
         </motion.p>
 
         <motion.div

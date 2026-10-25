@@ -332,7 +332,7 @@ export default function PortraitReveal() {
                 Integrated M.Tech. in Artificial Intelligence &amp; Bioinformatics
               </p>
               <p className="mt-1 text-xs text-cyan-200/85 sm:text-sm">
-                B.Tech+M.Tech in Artificial Intelligence &amp; Bioinformatics
+                CGPA: 9.10/10 · Expected graduation: May 2030
               </p>
               <p className="mt-4">
                 My focus is bridging the physical and digital worlds — embedded

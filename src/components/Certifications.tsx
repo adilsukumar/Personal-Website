@@ -7,6 +7,7 @@ import {
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
+  useInView,
   useTransform,
 } from "framer-motion";
 import { Award, GraduationCap, Trophy } from "lucide-react";
@@ -398,57 +399,37 @@ function DesktopArchive() {
 }
 
 function MobileArchive() {
-  return (
-    <div className="cinematic-adaptive relative px-6 py-28">
-      <SectionEyebrow number="02" label="Certifications" />
-      <h2 className="text-3xl font-semibold tracking-tight text-white">Certifications &amp; achievements</h2>
-      <p className="mt-3 text-sm text-slate-500">Proof, preserved in motion.</p>
-      <div className="mt-8 grid grid-cols-3 divide-x divide-white/10 text-center">
-        {STATS.map((stat, index) => (
-          <div key={stat.label} className="px-2">
-            <p className={`text-2xl ${index === 0 ? "text-cyan-300" : index === 1 ? "text-amber-200" : "text-violet-300"}`}>{stat.value}</p>
-            <p className="mt-1 font-mono text-[7px] tracking-[0.12em] text-slate-500 uppercase">{stat.label}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-14 space-y-14">
-        {CATEGORY_META.map((category) => {
-          const items = ARCHIVE_ITEMS.filter((item) => item.category === category.key);
-          return (
-            <section key={category.key} aria-labelledby={`mobile-${category.key}`}>
-              <div className="mb-5 flex items-center gap-3">
-                <span className="h-px flex-1" style={{ backgroundImage: `linear-gradient(to right, transparent, ${category.color}99)` }} />
-                <h3 id={`mobile-${category.key}`} className="font-mono text-[10px] tracking-[0.25em] uppercase" style={{ color: category.color }}>{category.label}</h3>
-              </div>
-              <div className="space-y-3">
-                {items.map((item, index) => (
-                  <motion.article key={`${item.title}-${item.issuer}`} initial={{ opacity: 0, y: 18, rotateX: -5 }} whileInView={{ opacity: 1, y: 0, rotateX: 0 }} viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.4, delay: Math.min(index * 0.025, 0.15) }} className="relative overflow-hidden rounded-2xl border bg-[#061015]/80 p-5 backdrop-blur-xl" style={{ borderColor: `${category.color}4d`, boxShadow: "inset 0 1px 0 rgba(255,255,255,.06), 0 12px 35px rgba(0,0,0,.28)" }}>
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="font-mono text-[8px] tracking-[0.18em] text-slate-600 uppercase">Collection {category.range}</p>
-                        <h4 className="mt-2 text-sm leading-5 font-semibold text-white">{item.title}</h4>
-                        {item.issuer && <p className="mt-1.5 text-xs leading-5 text-slate-500">{item.issuer}</p>}
-                      </div>
-                      <span className="font-mono text-[8px] tracking-[0.12em]" style={{ color: category.color }}>{item.date}</span>
-                    </div>
-                    {item.distinction && <p className={`mt-4 border-t border-white/[0.07] pt-3 font-mono text-[9px] tracking-[0.14em] uppercase ${isPodium(item) ? "text-amber-200" : "text-cyan-200"}`}>{item.distinction}</p>}
-                  </motion.article>
-                ))}
-              </div>
-            </section>
-          );
-        })}
-      </div>
+  const [index, setIndex] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { margin: "80px" });
+  const reducedMotion = Boolean(useReducedMotion());
+  const running = inView && !reducedMotion;
+  const item = ARCHIVE_ITEMS[index];
+  const category = getCategory(item.category);
+  return <div className="cinematic-adaptive relative px-6 py-24">
+    <SectionEyebrow number="02" label="Certifications" />
+    <h2 className="text-3xl font-semibold tracking-tight text-white">Certifications &amp; achievements</h2>
+    <div className="my-7 grid grid-cols-3 divide-x divide-white/10 text-center">{STATS.map(stat => <div key={stat.label}><p className="text-2xl text-cyan-200">{stat.value}</p><p className="mt-1 text-xs text-slate-400">{stat.label}</p></div>)}</div>
+    <label htmlFor="mobile-credential-picker" className="mb-2 block text-xs font-medium text-slate-300">Choose credential</label>
+    <select id="mobile-credential-picker" value={index} onChange={event => setIndex(Number(event.target.value))} className="min-h-12 w-full min-w-0 rounded-xl border border-violet-200/30 bg-[#061117] px-3 text-sm text-white focus-visible:outline-2 focus-visible:outline-cyan-200">{ARCHIVE_ITEMS.map((entry, i) => <option key={`${entry.title}-${entry.issuer}`} value={i}>{entry.title} — {entry.issuer}</option>)}</select>
+    <div className="mt-4 grid grid-cols-3 gap-2">{CATEGORY_META.map(entry => <button key={entry.key} type="button" aria-pressed={item.category === entry.key} onClick={() => setIndex(ARCHIVE_ITEMS.findIndex(x => x.category === entry.key))} className="min-h-11 rounded-full border border-white/20 text-xs text-slate-200 focus-visible:outline-2 focus-visible:outline-cyan-200" style={item.category === entry.key ? { borderColor: category.color, color: category.color } : undefined}>{entry.label}</button>)}</div>
+    <div ref={ref} data-mobile-scene="prism" className="relative mt-6 h-[24rem] [perspective:1000px]">
+      {[2, 1].map(layer => <motion.div key={layer} aria-hidden="true" className="absolute inset-x-4 inset-y-5 rounded-3xl border border-violet-200/25 bg-[#0b1020]" style={{ rotate: layer * -5, x: layer * -4 }} animate={{ y: running ? [0, -4 * layer, 0] : 0 }} transition={{ duration: 5 + layer, repeat: running ? Infinity : 0, ease: "easeInOut" }} />)}
+      <motion.article key={`${item.title}-${index}`} data-credential-card initial={{ rotateY: reducedMotion ? 0 : 12, x: reducedMotion ? 0 : 15 }} animate={{ rotateY: -3, x: 0 }} transition={{ duration: reducedMotion ? 0 : 0.45 }} className="absolute inset-2 flex flex-col justify-between rounded-3xl border bg-[#061117] p-6 shadow-2xl" style={{ borderColor: category.color }}>
+        <p className="font-mono text-xs uppercase" style={{ color: category.color }}>{category.label} · {index + 1} / {ARCHIVE_ITEMS.length}</p>
+        <div><h3 className="text-2xl leading-tight font-semibold text-white">{item.title}</h3>{item.distinction && <p className="mt-4 text-base text-cyan-200">{item.distinction}</p>}</div>
+        <div className="border-t border-white/15 pt-4"><p className="text-sm leading-6 text-slate-300">{item.issuer}</p><p className="mt-2 text-xs text-slate-400">{item.date || "Earlier honor"}</p></div>
+      </motion.article>
     </div>
-  );
+    <div className="mt-5 flex justify-between gap-3"><button type="button" onClick={() => setIndex((index - 1 + ARCHIVE_ITEMS.length) % ARCHIVE_ITEMS.length)} className="min-h-11 rounded-full border border-white/20 px-5 text-sm text-slate-200">Previous credential</button><button type="button" onClick={() => setIndex((index + 1) % ARCHIVE_ITEMS.length)} className="min-h-11 rounded-full border border-white/20 px-5 text-sm text-slate-200">Next credential</button></div>
+  </div>;
 }
 
 export default function Certifications() {
   const isLowPower = useIsLowPowerDevice();
 
   return (
-    <section id="certifications" aria-labelledby="certification-archive-title" className="relative isolate overflow-clip bg-black text-white">
+    <section id="certifications" aria-label="Certifications and achievements" className="relative isolate overflow-clip bg-black text-white">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20 bg-[linear-gradient(to_bottom,#000_0%,#05020b_10%,#01070b_48%,#03010a_84%,#000_100%)]" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[32rem] bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.18),transparent_66%)]" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[30rem] bg-[radial-gradient(ellipse_at_bottom,rgba(34,211,238,0.1),transparent_68%)]" />

@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Adil Sukumar",
   description:
-    "Personal site of Adil Sukumar — builder at the intersection of hardware, AI, and biology.",
+    "Adil Sukumar — software and embedded-systems developer, Pawsitive Diagnostics founder, and AI and bioinformatics student at VIT Bhopal.",
 };
 
 export default function RootLayout({

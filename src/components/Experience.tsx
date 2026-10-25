@@ -14,13 +14,12 @@ import {
   BriefcaseBusiness,
   Cpu,
   Dna,
-  RadioTower,
   ShieldCheck,
-  Users,
 } from "lucide-react";
 import SectionEyebrow from "./SectionEyebrow";
 import { useIsLowPowerDevice } from "@/lib/useIsLowPowerDevice";
 import LeadershipSignal from "./LeadershipSignal";
+import MobileOrbit from "./MobileOrbit";
 
 type JourneyMilestone = {
   role: string;
@@ -35,20 +34,20 @@ type JourneyMilestone = {
   ongoing?: boolean;
 };
 
-// Starts with the earliest leadership milestone, then follows every
-// professional role by start date. The May 2026 roles occupy the same outer
-// growth band because they overlapped instead of happening sequentially.
+// Professional roles by start date; school leadership lives in the separate
+// leadership section. Overlapping roles share the same growth band.
 const JOURNEY: JourneyMilestone[] = [
   {
-    role: "Student Council Member",
-    shortRole: "Student Council",
-    company: "Sunbeam CBSE & Matric Schools",
-    date: "Nov 2023 – May 2025",
-    marker: "2023",
-    desc: "The starting point: learning to represent a community, coordinate people, and turn responsibility into dependable execution.",
-    icon: Users,
+    role: "Founder & Product Developer",
+    shortRole: "Founder & Product",
+    company: "Spendture",
+    date: "Aug 2025 – Present",
+    marker: "AUG 2025",
+    desc: "Develop a personal-finance product focused on budget tracking and everyday spending decisions; translate user needs into product requirements, interface workflows and implementation priorities.",
+    icon: BriefcaseBusiness,
     x: 350,
     y: 330,
+    ongoing: true,
   },
   {
     role: "AI & Bioinformatics Intern",
@@ -89,7 +88,7 @@ const JOURNEY: JourneyMilestone[] = [
     shortRole: "IoT Systems",
     company: "ElectraWireless LLC",
     date: "May 2026 – Aug 2026",
-    marker: "AUG 2026",
+    marker: "MAY 2026",
     desc: "Co-created ELLY’s offline-first React/TypeScript ecosystem: local Web-LLM voice commands, TensorFlow.js/MobileNet appliance scanning and facial recognition, BLE/Wi-Fi discovery, MQTT and energy telemetry. Automated Capacitor iOS/Android builds with GitHub Actions.",
     icon: Cpu,
     x: 700,
@@ -232,7 +231,7 @@ function DetailCard({ milestone, index, limitMotion }: { milestone: JourneyMiles
             {milestone.date}
           </p>
           <div className="my-3 h-px bg-gradient-to-r from-white/15 to-transparent lg:my-4 xl:my-6" />
-          <p className="text-[11px] leading-5 font-light text-slate-300 lg:text-xs lg:leading-6 xl:text-sm xl:leading-7">{milestone.desc}</p>
+          <p className="text-sm leading-6 font-light text-slate-300 lg:text-xs lg:leading-6 xl:text-sm xl:leading-7">{milestone.desc}</p>
 
           <div className="mt-5 hidden items-center justify-between font-mono text-[9px] tracking-[0.2em] text-slate-500 uppercase lg:flex xl:mt-7">
             <span>Leadership → Engineering → Research</span>
@@ -242,6 +241,18 @@ function DetailCard({ milestone, index, limitMotion }: { milestone: JourneyMiles
       </motion.article>
     </AnimatePresence>
   );
+}
+
+function MobileExperience() {
+  const [index, setIndex] = useState(JOURNEY.length - 1);
+  const reducedMotion = Boolean(useReducedMotion());
+  return <div className="cinematic-adaptive pb-24">
+    <SectionEyebrow number="01" label="Experience" />
+    <h2 className="text-3xl font-semibold tracking-tight text-white">Professional <span className="text-cyan-200">journey</span></h2>
+    <p className="mt-3 text-sm leading-6 text-slate-400">From engineering and research to the work in progress today.</p>
+    <MobileOrbit label="Choose experience" items={JOURNEY.map(item => ({ title: `${item.company} — ${item.role}` }))} activeIndex={index} onSelect={setIndex} />
+    <DetailCard key={JOURNEY[index].role} milestone={JOURNEY[index]} index={index} limitMotion={reducedMotion} />
+  </div>;
 }
 
 export default function Experience() {
@@ -329,52 +340,7 @@ export default function Experience() {
       </div>
 
       <div className="mx-auto max-w-7xl px-6 pt-24 md:px-12 lg:px-16 min-[2200px]:max-w-[150rem] min-[2200px]:px-24">
-        <div className="cinematic-adaptive pb-24">
-          <SectionEyebrow number="01" label="Experience" />
-          <h2 className="mb-4 text-4xl font-bold tracking-tight">
-            Professional <span className="text-cyan-300">journey</span>
-          </h2>
-          <p className="max-w-xl text-sm leading-6 text-slate-400">
-            From early leadership to engineering, research, and building products — swipe through the orbit chronologically.
-          </p>
-
-          <div className="relative mt-10 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025] p-5 backdrop-blur-xl">
-            <div aria-hidden="true" className="absolute inset-x-8 top-8 h-32 rounded-full border border-cyan-300/10" />
-            <div aria-hidden="true" className="absolute top-16 left-1/2 h-20 w-20 -translate-x-1/2 rounded-full border border-violet-300/20 shadow-[0_0_40px_rgba(139,92,246,0.12)]" />
-            <div className="relative flex h-40 flex-col items-center justify-center text-center">
-              <RadioTower className="mb-3 h-6 w-6 text-cyan-300" />
-              <p className="font-mono text-[10px] tracking-[0.28em] text-slate-500 uppercase">Growth orbit</p>
-              <p className="mt-2 text-lg font-semibold">Nov 2023 → Present</p>
-            </div>
-          </div>
-
-          <div className="-mx-6 mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {JOURNEY.map((milestone) => {
-              const Icon = milestone.icon;
-              return (
-                <motion.article
-                  key={milestone.role}
-                  initial={{ opacity: 0, y: 22, scale: 0.97 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.45 }}
-                  transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
-                  className="min-w-[84vw] snap-center rounded-[1.5rem] border border-white/10 bg-[#061117]/85 p-6 backdrop-blur-xl sm:min-w-[28rem]"
-                >
-                  <div className="mb-6 flex items-center justify-between">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full border border-cyan-300/40 bg-cyan-300/5 text-cyan-300">
-                      <Icon className="h-5 w-5" strokeWidth={1.6} />
-                    </span>
-                    <span className="font-mono text-[10px] tracking-[0.2em] text-cyan-300 uppercase">{milestone.marker}</span>
-                  </div>
-                  <h3 className="text-xl font-semibold">{milestone.role}</h3>
-                  <p className="mt-2 text-sm text-violet-300">{milestone.company}</p>
-                  <p className="mt-4 text-sm leading-6 text-slate-400">{milestone.desc}</p>
-                  <p className="mt-6 font-mono text-[10px] tracking-[0.16em] text-slate-500 uppercase">{milestone.date}</p>
-                </motion.article>
-              );
-            })}
-          </div>
-        </div>
+        <MobileExperience />
 
         <div ref={journeyRef} className="cinematic-desktop relative h-[1000vh]">
           <div className="sticky top-0 flex h-[100dvh] min-h-[700px] flex-col justify-center pt-20 pb-8">
@@ -460,7 +426,7 @@ export default function Experience() {
                   <circle cx="350" cy="330" r="68" fill="url(#journey-hub)" stroke="#67e8f9" strokeOpacity="0.28" />
                   <circle cx="350" cy="330" r="78" fill="none" stroke="#a78bfa" strokeOpacity="0.18" strokeDasharray="2 8" />
                   <text x="350" y="278" textAnchor="middle" fill="#cbd5e1" fontSize="9" letterSpacing="2.5">THE BEGINNING</text>
-                  <text x="350" y="392" textAnchor="middle" fill="#a78bfa" fontSize="10" letterSpacing="2">NOV 2023</text>
+                  <text x="350" y="392" textAnchor="middle" fill="#a78bfa" fontSize="10" letterSpacing="2">AUG 2025</text>
                 </svg>
 
                 {JOURNEY.map((milestone, index) => (
@@ -484,7 +450,7 @@ export default function Experience() {
                     className="absolute top-0 left-1/2 h-full w-px origin-top -translate-x-1/2 bg-gradient-to-b from-violet-400 to-cyan-300 shadow-[0_0_8px_rgba(34,211,238,0.6)]"
                     style={{ scaleY: reducedMotion ? 1 : smoothProgress }}
                   />
-                  {["2023", "2025", "2026", "NOW"].map((label, index) => (
+                  {["2025", "FEB 2026", "AUG 2026", "NOW"].map((label, index) => (
                     <div key={label} className="absolute left-1/2 -translate-x-1/2" style={{ top: `${(index / 3) * 100}%` }}>
                       <span className="block h-2.5 w-2.5 -translate-y-1/2 rounded-full border border-white/50 bg-black" />
                       <span className="absolute top-1/2 left-4 -translate-y-1/2 font-mono text-[9px] tracking-[0.14em] text-slate-500">{label}</span>
